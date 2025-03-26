@@ -93,7 +93,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Image Carousel */}
-        <div className="relative w-full h-[500px] overflow-hidden rounded-lg shadow-xl">
+        <div className="relative w-full h-[500px] overflow-hidden rounded-lg shadow-xl mb-8">
           {/* Slides */}
           {slides.map((slide, index) => (
             <div
@@ -157,6 +157,17 @@ export default function DashboardPage() {
               />
             ))}
           </div>
+        </div>
+
+        {/* Fixed Screen Image Section */}
+        <div className="relative w-full h-[600px] overflow-hidden rounded-lg shadow-xl">
+          <Image
+            src="/images/yt6.jpg"
+            alt="Dashboard Background"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </div>
     </div>
