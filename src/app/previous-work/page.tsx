@@ -1,8 +1,22 @@
 'use client'
 import { useState } from 'react'
 
+interface ProjectStats {
+  subscribers: string
+  views: string
+  growth: string
+}
+
+interface Project {
+  title: string
+  description: string
+  category: string
+  images: string[]
+  stats: ProjectStats
+}
+
 const PreviousWorkPage = () => {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Sport Channel Growth",
       description: "Helped scale a Sport channel from 1K to 10K subscribers in 1 months",
@@ -77,7 +91,11 @@ const PreviousWorkPage = () => {
   )
 }
 
-const ProjectCard = ({ project }: { project: any }) => {
+interface ProjectCardProps {
+  project: Project
+}
+
+const ProjectCard = ({ project }: ProjectCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const nextImage = () => {
@@ -125,7 +143,7 @@ const ProjectCard = ({ project }: { project: any }) => {
 
           {/* Dots Navigation */}
           <div className="carousel-dots">
-            {project.images.map((_: any, index: number) => (
+            {project.images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
