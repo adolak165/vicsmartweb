@@ -52,7 +52,7 @@ export default function HowYoutubePays() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">How YouTube Pays</h2>
-          <p className="text-xl text-gray-600">Here's a simplified explanation of how YouTube pays its creators
+          <p className="text-xl text-gray-600">Here&apos;s a simplified explanation of how YouTube pays its creators
           </p>
         </div>
         
