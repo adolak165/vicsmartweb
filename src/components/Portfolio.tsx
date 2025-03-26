@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Portfolio() {
   return (
     <section id="portfolio" className="py-20">
@@ -29,8 +31,13 @@ export default function Portfolio() {
 function PortfolioItem({ title, description, image }: { title: string; description: string; image: string }) {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-      <div className="h-48 bg-gray-200">
-        {/* Add actual images later */}
+      <div className="relative h-48">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+        />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{title}</h3>

@@ -59,17 +59,6 @@ export default function DashboardPage() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('user')
-    router.push('/login')
-  }
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle search logic here
-    console.log('Searching for:', searchQuery)
-  }
-
   return (
     <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <div className="px-4 py-6 sm:px-0">
@@ -82,7 +71,7 @@ export default function DashboardPage() {
                   Welcome back, {user?.name}!
                 </h1>
                 <p className="text-purple-100 text-lg">
-                  Here's what's happening with your account today.
+                  Here&apos;s what&apos;s happening with your account today.
                 </p>
               </div>
               <div className="flex space-x-4">

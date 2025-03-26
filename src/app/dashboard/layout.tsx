@@ -57,6 +57,11 @@ export default function DashboardLayout({
     const userData = localStorage.getItem('user')
     if (userData) {
       setUser(JSON.parse(userData))
+      // Example usage of state setters
+      // In a real app, these would be updated based on actual data from your backend
+      setOrderCount(0)
+      setUnreadMessages(0)
+      setUnreadNotifications(0)
     } else {
       router.push('/login')
     }

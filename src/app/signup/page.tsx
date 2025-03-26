@@ -44,7 +44,7 @@ export default function SignupPage() {
       } else {
         setError('Please fill in all fields')
       }
-    } catch (err) {
+    } catch {
       setError('Registration failed. Please try again.')
     } finally {
       setIsLoading(false)

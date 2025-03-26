@@ -1,7 +1,6 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 interface Review {
   id: string
@@ -10,16 +9,6 @@ interface Review {
   comment: string
   date: string
   reviewer: string
-}
-
-interface WorkHistory {
-  id: string
-  service: string
-  title: string
-  description: string
-  date: string
-  status: 'completed' | 'in-progress'
-  thumbnail: string
 }
 
 interface UserProfile {
@@ -59,26 +48,7 @@ export default function ProfilePage() {
     username: '',
     password: ''
   })
-  const [isEditing, setIsEditing] = useState(false)
-  const [formData, setFormData] = useState<UserProfile>({
-    name: '',
-    email: '',
-    phone: '',
-    avatar: '',
-    bio: '',
-    location: '',
-    youtubeChannel: '',
-    joinDate: '',
-    totalOrders: 0,
-    activeServices: [],
-    reviews: [],
-    averageRating: 0,
-    username: '',
-    password: ''
-  })
   const [previewUrl, setPreviewUrl] = useState<string>('')
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [activeTab, setActiveTab] = useState<'reviews' | 'work'>('reviews')
 
   const reviews: Review[] = [
     {
@@ -104,36 +74,6 @@ export default function ProfilePage() {
       comment: 'Your thumbnail designs are ready! We hope you love the creative options we provided.',
       date: '2024-03-05',
       reviewer: 'Vicsmart Team'
-    }
-  ]
-
-  const workHistory: WorkHistory[] = [
-    {
-      id: '1',
-      service: 'Video Editing',
-      title: 'Gaming Video Edit',
-      description: 'Your gaming video has been edited and enhanced with professional transitions and effects',
-      date: '2024-03-20',
-      status: 'completed',
-      thumbnail: '/thumbnails/gaming.jpg'
-    },
-    {
-      id: '2',
-      service: 'Voice Over',
-      title: 'Product Review Voice Over',
-      description: 'Professional voice over recording for your product review video',
-      date: '2024-03-18',
-      status: 'completed',
-      thumbnail: '/thumbnails/product.jpg'
-    },
-    {
-      id: '3',
-      service: 'Thumbnail Design',
-      title: 'YouTube Thumbnail Package',
-      description: 'Custom thumbnail designs for your YouTube video series',
-      date: '2024-03-15',
-      status: 'in-progress',
-      thumbnail: '/thumbnails/youtube.jpg'
     }
   ]
 
@@ -188,33 +128,9 @@ export default function ProfilePage() {
         username: user.username || '',
         password: user.password || ''
       })
-      setFormData({
-        name: user.name || 'John Doe',
-        email: user.email || 'john@example.com',
-        phone: '+1 (555) 123-4567',
-        avatar: user.name?.charAt(0).toUpperCase() || 'J',
-        bio: 'Content creator and YouTuber passionate about creating engaging videos.',
-        location: 'New York, USA',
-        youtubeChannel: 'youtube.com/channel/example',
-        joinDate: 'March 2024',
-        totalOrders: 12,
-        activeServices: ['Video Editing', 'Voice Over', 'Thumbnail Design'].map(name => ({ name, active: true })),
-        reviews: sampleReviews,
-        averageRating,
-        username: user.username || '',
-        password: user.password || ''
-      })
       setPreviewUrl(user.avatar || '')
     }
   }, [])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -230,18 +146,6 @@ export default function ProfilePage() {
       }
       reader.readAsDataURL(file)
     }
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setProfile(formData)
-    setIsEditing(false)
-    // In a real app, this would update the backend
-    localStorage.setItem('user', JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      avatar: formData.avatar
-    }))
   }
 
   const handleSave = () => {

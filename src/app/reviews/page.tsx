@@ -1,5 +1,19 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Image from 'next/image'
+
+interface Review {
+  name: string
+  role: string
+  review: string
+  rating: number
+  image: string
+  channelStats: {
+    subscribers: string
+    views: string
+    growth: string
+  }
+}
 
 const ReviewsPage = () => {
   const reviews = [
@@ -68,7 +82,7 @@ const ReviewsPage = () => {
   )
 }
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review }: { review: Review }) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -79,10 +93,11 @@ const ReviewCard = ({ review }) => {
     >
       {/* Image Section */}
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src={review.image}
           alt={`${review.name}'s YouTube Channel`}
-          className={`w-full h-full object-cover transition-transform duration-500 ${
+          fill
+          className={`object-cover transition-transform duration-500 ${
             isHovered ? 'scale-110' : 'scale-100'
           }`}
         />
@@ -120,7 +135,7 @@ const ReviewCard = ({ review }) => {
           <p className="text-purple-600">{review.role}</p>
         </div>
 
-        <p className="text-gray-600 mb-6">"{review.review}"</p>
+        <p className="text-gray-600 mb-6">&ldquo;{review.review}&rdquo;</p>
 
         {/* Channel Stats */}
         <div className="grid grid-cols-3 gap-4 text-center bg-gray-50 p-4 rounded-lg">

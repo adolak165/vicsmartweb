@@ -64,7 +64,7 @@ export default function SEOPage() {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="prose max-w-none">
             <p className="text-gray-700 mb-6">
-              Professional YouTube SEO services to improve your channel's visibility and reach. Our experts help you optimize your content for better search rankings and increased organic traffic.
+              Professional YouTube SEO services to improve your channel&apos;s visibility and reach. Our experts help you optimize your content for better search rankings and increased organic traffic.
             </p>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -133,7 +133,7 @@ export default function SEOPage() {
             <div className="mt-8 bg-blue-50 p-4 rounded-lg">
               <h3 className="text-lg font-semibold text-blue-900 mb-2">Need Help?</h3>
               <p className="text-blue-800">
-                Our SEO experts are ready to help you improve your channel's visibility and reach more viewers.
+                Our SEO experts are ready to help you improve your channel&apos;s visibility and reach more viewers.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function SEOPage() {
         </div>
 
         {/* Reviews Section */}
-        <ReviewSection serviceName="YouTube SEO" reviews={reviews} />
+        <ReviewSection reviews={reviews} />
       </div>
     </div>
   )

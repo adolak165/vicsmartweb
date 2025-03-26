@@ -133,7 +133,7 @@ export default function MonetizationPage() {
             <div className="mt-8 bg-blue-50 p-4 rounded-lg">
               <h3 className="text-lg font-semibold text-blue-900 mb-2">Need Help?</h3>
               <p className="text-blue-800">
-                Our monetization experts are ready to help you maximize your channel's revenue potential.
+                Our monetization experts are ready to help you maximize your channel&apos;s revenue potential.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function MonetizationPage() {
         </div>
 
         {/* Reviews Section */}
-        <ReviewSection serviceName="Channel Monetization" reviews={reviews} />
+        <ReviewSection reviews={reviews} />
       </div>
     </div>
   )

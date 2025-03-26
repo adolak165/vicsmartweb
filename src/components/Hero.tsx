@@ -55,7 +55,7 @@ export default function Hero() {
 
           {/* Call to Action */}
           <p className="text-lg text-white/90 mb-8">
-            Get in touch today and let's get started on your journey to passive income success!
+            Get in touch today and let&apos;s get started on your journey to passive income success!
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">

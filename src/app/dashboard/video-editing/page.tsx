@@ -155,7 +155,7 @@ export default function VideoEditingPage() {
         </div>
 
         {/* Reviews Section */}
-        <ReviewSection serviceName="Video Editing" reviews={reviews} />
+        <ReviewSection reviews={reviews} />
       </div>
     </div>
   )

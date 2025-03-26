@@ -124,7 +124,7 @@ export default function ServicesPage() {
         {/* CTA Section */}
         <div className="bg-purple-600 text-white rounded-xl p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Your YouTube Journey?</h2>
-          <p className="text-xl mb-6">Let's discuss how we can help you achieve your YouTube goals</p>
+          <p className="text-xl mb-6">Let&apos;s discuss how we can help you achieve your YouTube goals</p>
           <button className="bg-white text-purple-600 py-3 px-8 rounded-full font-bold hover:bg-gray-100 transition-colors">
             Schedule a Consultation
           </button>

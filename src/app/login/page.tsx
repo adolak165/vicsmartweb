@@ -36,7 +36,7 @@ export default function LoginPage() {
       } else {
         setError('Please fill in all fields')
       }
-    } catch (err) {
+    } catch {
       setError('Invalid email or password')
     } finally {
       setIsLoading(false)

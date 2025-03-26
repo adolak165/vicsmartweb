@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 
 interface Review {
   id: string
@@ -13,11 +12,10 @@ interface Review {
 }
 
 interface ReviewSectionProps {
-  serviceName: string
   reviews: Review[]
 }
 
-export default function ReviewSection({ serviceName, reviews }: ReviewSectionProps) {
+export default function ReviewSection({ reviews }: ReviewSectionProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden mt-8">
       <div className="px-8 py-6 border-b border-gray-200">

@@ -42,7 +42,7 @@ export default function Reviews() {
                   </svg>
                 ))}
               </div>
-              <p className="text-gray-600 mb-4">"{review.comment}"</p>
+              <p className="text-gray-600 mb-4">&ldquo;{review.comment}&rdquo;</p>
               <div>
                 <p className="font-bold">{review.name}</p>
                 <p className="text-gray-500 text-sm">{review.role}</p>
