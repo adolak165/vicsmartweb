@@ -155,7 +155,7 @@ export default function ThumbnailPage() {
         </div>
 
         {/* Reviews Section */}
-        <ReviewSection serviceName="Thumbnail Design" reviews={reviews} />
+        <ReviewSection reviews={reviews} />
       </div>
     </div>
   )
