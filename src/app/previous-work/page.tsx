@@ -77,7 +77,7 @@ const PreviousWorkPage = () => {
   )
 }
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project }: { project: any }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const nextImage = () => {
@@ -125,7 +125,7 @@ const ProjectCard = ({ project }) => {
 
           {/* Dots Navigation */}
           <div className="carousel-dots">
-            {project.images.map((_, index) => (
+            {project.images.map((_: any, index: number) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
