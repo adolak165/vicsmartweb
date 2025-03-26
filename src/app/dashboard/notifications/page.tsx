@@ -1,0 +1,127 @@
+'use client'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+interface Notification {
+  id: string
+  title: string
+  message: string
+  type: 'info' | 'success' | 'warning' | 'error'
+  date: string
+  isRead: boolean
+}
+
+export default function NotificationsPage() {
+  const router = useRouter()
+  const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: '1',
+      title: 'New Order Received',
+      message: 'Order #123 has been placed successfully.',
+      type: 'success',
+      date: '2024-03-25',
+      isRead: false
+    },
+    {
+      id: '2',
+      title: 'System Update',
+      message: 'The platform will be undergoing maintenance tomorrow.',
+      type: 'info',
+      date: '2024-03-24',
+      isRead: true
+    },
+    {
+      id: '3',
+      title: 'Payment Failed',
+      message: 'There was an issue processing your last payment.',
+      type: 'error',
+      date: '2024-03-23',
+      isRead: false
+    }
+  ])
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user')
+    if (!userData) {
+      router.push('/login')
+    }
+  }, [router])
+
+  const handleNotificationClick = (notificationId: string) => {
+    setNotifications(notifications.map(notif => 
+      notif.id === notificationId ? { ...notif, isRead: true } : notif
+    ))
+  }
+
+  const getTypeColor = (type: Notification['type']) => {
+    switch (type) {
+      case 'success':
+        return 'bg-green-50 border-green-200 text-green-800'
+      case 'error':
+        return 'bg-red-50 border-red-200 text-red-800'
+      case 'warning':
+        return 'bg-yellow-50 border-yellow-200 text-yellow-800'
+      default:
+        return 'bg-blue-50 border-blue-200 text-blue-800'
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="px-4 py-6 sm:px-0">
+          <div className="bg-white shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h1 className="text-2xl font-semibold text-gray-900">Notifications</h1>
+                <Link
+                  href="/dashboard"
+                  className="text-sm text-purple-600 hover:text-purple-500"
+                >
+                  Back to Dashboard
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                {notifications.map((notification) => (
+                  <div
+                    key={notification.id}
+                    onClick={() => handleNotificationClick(notification.id)}
+                    className={`p-4 rounded-lg border cursor-pointer transition-colors ${
+                      notification.isRead 
+                        ? 'bg-white border-gray-200 hover:bg-gray-50' 
+                        : 'bg-purple-50 border-purple-200 hover:bg-purple-100'
+                    }`}
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2">
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${getTypeColor(notification.type)}`}>
+                            {notification.type}
+                          </span>
+                          {!notification.isRead && (
+                            <span className="h-2 w-2 bg-purple-600 rounded-full"></span>
+                          )}
+                        </div>
+                        <h3 className="mt-2 text-sm font-medium text-gray-900">
+                          {notification.title}
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-500">
+                          {notification.message}
+                        </p>
+                      </div>
+                      <span className="text-xs text-gray-500 ml-4">
+                        {new Date(notification.date).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+} 

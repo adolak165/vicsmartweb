@@ -17,6 +17,11 @@ const Header = () => {
     { href: '/contact', label: 'Contact' }
   ]
 
+  const authLinks = [
+    { href: '/login', label: 'Login' },
+    { href: '/signup', label: 'Sign Up' }
+  ]
+
   return (
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
       <nav className="container mx-auto px-4">
@@ -25,7 +30,7 @@ const Header = () => {
             Vicsmart
           </Link>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -37,6 +42,21 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            <div className="flex items-center space-x-4 ml-4">
+              {authLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${
+                    index === 0
+                      ? 'px-4 py-2 rounded-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 transition-all duration-300'
+                      : 'px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition-all duration-300'
+                  } font-medium`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
 
           <button
@@ -76,6 +96,23 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            <div className="border-t border-gray-200 my-2"></div>
+            <div className="flex flex-col space-y-2">
+              {authLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${
+                    index === 0
+                      ? 'px-4 py-2 rounded-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 transition-all duration-300 text-center'
+                      : 'px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition-all duration-300 text-center'
+                  } font-medium`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </nav>
