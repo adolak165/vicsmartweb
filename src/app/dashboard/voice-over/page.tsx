@@ -155,7 +155,7 @@ export default function VoiceOverPage() {
         </div>
 
         {/* Reviews Section */}
-        <ReviewSection serviceName="Voice-Over" reviews={reviews} />
+        <ReviewSection reviews={reviews} />
       </div>
     </div>
   )
