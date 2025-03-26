@@ -312,7 +312,7 @@ export default function OrdersPage() {
                             <svg
                               key={i}
                               className={`h-5 w-5 ${
-                                i < order.review.rating ? 'text-yellow-400' : 'text-gray-300'
+                                i < (order.review?.rating ?? 0) ? 'text-yellow-400' : 'text-gray-300'
                               }`}
                               fill="currentColor"
                               viewBox="0 0 20 20"
@@ -322,11 +322,11 @@ export default function OrdersPage() {
                           ))}
                         </div>
                         <span className="text-sm text-gray-600">
-                          {new Date(order.review.date).toLocaleDateString()}
+                          {new Date(order.review?.date ?? '').toLocaleDateString()}
                         </span>
                       </div>
                     </div>
-                    <p className="mt-2 text-sm text-gray-700">{order.review.comment}</p>
+                    <p className="mt-2 text-sm text-gray-700">{order.review?.comment}</p>
                   </div>
                 )}
               </div>
