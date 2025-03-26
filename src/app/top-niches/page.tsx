@@ -1,5 +1,3 @@
-import TopNiches from '@/components/TopNiches'
-
 export default function TopNichesPage() {
   const niches = [
     {
