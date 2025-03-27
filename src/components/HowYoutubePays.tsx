@@ -57,34 +57,37 @@ export default function HowYoutubePays() {
       <div className="flex flex-col lg:flex-row">
         {/* Left Side - Sticky Navigation */}
         <div className="w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-screen bg-white border-b lg:border-b-0 lg:border-r border-gray-100">
-          <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center min-h-[50vh] lg:min-h-screen">
-            <div className="mt-8 sm:mt-12 lg:mt-20">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">How YouTube Pays</h2>
-              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-8 sm:mb-12 leading-relaxed">
-                Here&apos;s a simplified explanation of how YouTube pays its creators
-              </p>
+          <div className="p-6 sm:p-8 lg:p-12 flex flex-col min-h-[50vh] lg:min-h-screen">
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">How YouTube Pays</h2>
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                  Here&apos;s a simplified explanation of how YouTube pays its creators
+                </p>
+              </div>
               
-              <nav className="space-y-2 sm:space-y-3">
+              <nav className="space-y-3">
                 {paymentMethods.map((method, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveMethod(index)}
-                    className={`w-full text-left px-4 sm:px-6 py-3 sm:py-4 rounded-lg transition-all duration-200 ${
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
                       activeMethod === index
-                        ? 'bg-purple-50 text-purple-700 font-medium'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        ? 'bg-purple-50 text-purple-700 font-medium border border-purple-100'
+                        : 'text-gray-600 hover:bg-gray-50 border border-gray-100'
                     }`}
                   >
-                    <div className="flex items-center space-x-3 sm:space-x-4">
-                      <div className="relative h-8 w-8 sm:h-10 sm:w-10">
+                    <div className="flex items-center space-x-3">
+                      <div className="relative h-8 w-8">
+                        <div className={`absolute inset-0 ${activeMethod === index ? 'bg-purple-100' : 'bg-gray-100'} rounded-full transform transition-transform duration-300 group-hover:scale-110`} />
                         <Image
                           src={method.icon}
                           alt={method.title}
                           fill
-                          className="object-contain"
+                          className="object-contain p-2"
                         />
                       </div>
-                      <span className="text-base sm:text-lg">{method.title}</span>
+                      <span className="text-base">{method.title}</span>
                     </div>
                   </button>
                 ))}
