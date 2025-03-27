@@ -291,27 +291,30 @@ export default function DashboardLayout({
 
       {/* Features Navigation */}
       <nav className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-12">
-            <div className="flex space-x-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="h-12 relative">
+            <div className="flex items-center overflow-x-auto scrollbar-hide space-x-2 sm:space-x-6 h-full">
               {features.map((feature) => {
                 const isActive = pathname === feature.href
                 return (
                   <Link
                     key={feature.name}
                     href={feature.href}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`flex items-center space-x-2 px-2 sm:px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
                       isActive
                         ? 'text-purple-600 bg-purple-50'
                         : 'text-gray-700 hover:text-purple-600 hover:bg-gray-100'
                     }`}
                   >
-                    {feature.icon}
+                    <span className="w-5 h-5">{feature.icon}</span>
                     <span>{feature.name}</span>
                   </Link>
                 )
               })}
             </div>
+            {/* Gradient fades for scroll indication */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none sm:hidden" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none sm:hidden" />
           </div>
         </div>
       </nav>
