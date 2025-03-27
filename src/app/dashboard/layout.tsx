@@ -122,79 +122,28 @@ export default function DashboardLayout({
     <div className="min-h-screen bg-gray-50">
       {/* Main Navigation */}
       <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-          <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/dashboard" className="text-xl sm:text-2xl font-bold text-purple-600">
+              <Link href="/dashboard" className="text-lg sm:text-2xl font-bold text-purple-600">
                 Vicsmart
               </Link>
             </div>
             
-            {/* Search Bar and Icons - Hidden on mobile, shown on larger screens */}
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center sm:space-x-4">
-              <div className="max-w-xl w-full relative" id="search-container">
-                <form onSubmit={handleSearch} className="relative">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value)
-                      if (e.target.value.trim()) {
-                        const results = features.filter(feature =>
-                          feature.name.toLowerCase().includes(e.target.value.toLowerCase())
-                        )
-                        setSearchResults(results)
-                        setShowSearchResults(true)
-                      } else {
-                        setSearchResults([])
-                        setShowSearchResults(false)
-                      }
-                    }}
-                    placeholder="Search features..."
-                    className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </form>
-
-                {/* Search Results Dropdown */}
-                {showSearchResults && searchResults.length > 0 && (
-                  <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
-                    {searchResults.map((result) => (
-                      <button
-                        key={result.href}
-                        onClick={() => handleSearchResultClick(result.href)}
-                        className="w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 focus:outline-none"
-                      >
-                        <div className="text-gray-500">{result.icon}</div>
-                        <span className="text-gray-700">{result.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
             {/* Mobile Navigation Icons */}
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               {/* Orders Link */}
               <Link 
                 href="/dashboard/orders" 
-                className="relative flex items-center p-2 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors"
+                className="relative flex items-center p-2.5 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 <span className="hidden sm:inline-block ml-2 font-medium">Orders</span>
                 {orderCount > 0 && (
-                  <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-800 rounded-full">
+                  <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs font-medium bg-purple-100 text-purple-800 rounded-full min-w-[1.25rem] text-center">
                     {orderCount}
                   </span>
                 )}
@@ -203,13 +152,13 @@ export default function DashboardLayout({
               {/* Message Icon */}
               <Link 
                 href="/dashboard/messages"
-                className="relative p-2 text-gray-500 hover:text-purple-600 focus:outline-none"
+                className="relative p-2.5 text-gray-500 hover:text-purple-600 focus:outline-none"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
                 {unreadMessages > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[1.25rem] h-5 flex items-center justify-center">
                     {unreadMessages}
                   </span>
                 )}
@@ -219,32 +168,30 @@ export default function DashboardLayout({
               <div className="relative" id="profile-dropdown">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center space-x-2 p-2 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors focus:outline-none"
+                  className="flex items-center space-x-2 p-1.5 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors focus:outline-none"
                 >
                   <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
                     <span className="text-purple-600 font-medium">
                       {user?.name?.charAt(0)?.toUpperCase() || '?'}
                     </span>
                   </div>
-                  <span className="hidden sm:inline-block text-sm font-medium">
-                    {user?.name || 'Guest'}
-                  </span>
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
-                    <div className="px-4 py-2 border-b border-gray-100">
-                      <p className="text-sm text-gray-600">{user?.email}</p>
+                  <div className="absolute right-0 mt-2 w-64 sm:w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-medium text-gray-900">{user?.name || 'Guest'}</p>
+                      <p className="text-sm text-gray-600 truncate">{user?.email}</p>
                     </div>
                     <Link
                       href="/dashboard/profile"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       Profile Settings
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
+                      className="block w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-gray-50"
                     >
                       Sign out
                     </button>
@@ -253,54 +200,54 @@ export default function DashboardLayout({
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Mobile Search Bar */}
-        <div className="sm:hidden px-2 pb-2">
-          <form onSubmit={handleSearch} className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value)
-                if (e.target.value.trim()) {
-                  const results = features.filter(feature =>
-                    feature.name.toLowerCase().includes(e.target.value.toLowerCase())
-                  )
-                  setSearchResults(results)
-                  setShowSearchResults(true)
-                } else {
-                  setSearchResults([])
-                  setShowSearchResults(false)
-                }
-              }}
-              placeholder="Search features..."
-              className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
-          </form>
+          {/* Mobile Search Bar */}
+          <div className="sm:hidden px-0 pb-3">
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  if (e.target.value.trim()) {
+                    const results = features.filter(feature =>
+                      feature.name.toLowerCase().includes(e.target.value.toLowerCase())
+                    )
+                    setSearchResults(results)
+                    setShowSearchResults(true)
+                  } else {
+                    setSearchResults([])
+                    setShowSearchResults(false)
+                  }
+                }}
+                placeholder="Search features..."
+                className="w-full px-4 py-2.5 text-base text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
+              />
+              <button
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
+          </div>
         </div>
       </nav>
 
       {/* Features Navigation */}
       <nav className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-          <div className="h-12 relative">
-            <div className="flex items-center overflow-x-auto scrollbar-hide space-x-2 sm:space-x-6 h-full">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="h-14 sm:h-12 relative">
+            <div className="flex items-center overflow-x-auto hide-scrollbar space-x-3 sm:space-x-6 h-full py-1 sm:py-0">
               {features.map((feature) => {
                 const isActive = pathname === feature.href
                 return (
                   <Link
                     key={feature.name}
                     href={feature.href}
-                    className={`flex items-center space-x-2 px-2 sm:px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                    className={`flex items-center space-x-2 px-3 py-2.5 sm:py-2 rounded-lg sm:rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
                       isActive
                         ? 'text-purple-600 bg-purple-50'
                         : 'text-gray-700 hover:text-purple-600 hover:bg-gray-100'
@@ -320,7 +267,7 @@ export default function DashboardLayout({
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 px-3 sm:px-0">
         {children}
       </main>
 
