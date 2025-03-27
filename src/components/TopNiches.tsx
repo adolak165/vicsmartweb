@@ -13,18 +13,18 @@ export default function TopNiches() {
   ]
 
   return (
-    <section className="py-12 sm:py-20 bg-white">
+    <section className="py-12 sm:py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">Top 10 Profitable YouTube Niches</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-white">Top 10 Profitable YouTube Niches</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {niches.map((niche, index) => (
             <div 
               key={index}
-              className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100"
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all hover:bg-white/15 border border-white/10"
             >
               <div className="text-3xl sm:text-4xl mb-4">{niche.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{niche.title}</h3>
-              <p className="text-gray-600 text-sm sm:text-base">{niche.description}</p>
+              <h3 className="text-xl font-bold mb-3 text-white">{niche.title}</h3>
+              <p className="text-gray-300 text-sm sm:text-base">{niche.description}</p>
             </div>
           ))}
         </div>
