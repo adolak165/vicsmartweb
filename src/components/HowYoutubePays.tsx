@@ -56,27 +56,27 @@ export default function HowYoutubePays() {
     <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <div className="flex flex-col lg:flex-row">
         {/* Left Side - Sticky Navigation */}
-        <div className="lg:w-1/2 lg:sticky lg:top-0 lg:h-screen bg-white border-r border-gray-100">
-          <div className="p-8 lg:p-12 flex flex-col justify-center min-h-screen">
-            <div className="mt-20">
-              <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">How YouTube Pays</h2>
-              <p className="text-2xl lg:text-3xl text-gray-600 mb-12 leading-relaxed">
+        <div className="w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-screen bg-white border-b lg:border-b-0 lg:border-r border-gray-100">
+          <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center min-h-[50vh] lg:min-h-screen">
+            <div className="mt-8 sm:mt-12 lg:mt-20">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">How YouTube Pays</h2>
+              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-8 sm:mb-12 leading-relaxed">
                 Here&apos;s a simplified explanation of how YouTube pays its creators
               </p>
               
-              <nav className="space-y-3">
+              <nav className="space-y-2 sm:space-y-3">
                 {paymentMethods.map((method, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveMethod(index)}
-                    className={`w-full text-left px-6 py-4 rounded-lg transition-all duration-200 ${
+                    className={`w-full text-left px-4 sm:px-6 py-3 sm:py-4 rounded-lg transition-all duration-200 ${
                       activeMethod === index
                         ? 'bg-purple-50 text-purple-700 font-medium'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="relative h-10 w-10">
+                    <div className="flex items-center space-x-3 sm:space-x-4">
+                      <div className="relative h-8 w-8 sm:h-10 sm:w-10">
                         <Image
                           src={method.icon}
                           alt={method.title}
@@ -84,7 +84,7 @@ export default function HowYoutubePays() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-lg">{method.title}</span>
+                      <span className="text-base sm:text-lg">{method.title}</span>
                     </div>
                   </button>
                 ))}
@@ -94,8 +94,8 @@ export default function HowYoutubePays() {
         </div>
 
         {/* Right Side - Scrollable Content */}
-        <div className="lg:w-1/2">
-          <div className="p-8 lg:p-12">
+        <div className="w-full lg:w-1/2">
+          <div className="p-6 sm:p-8 lg:p-12">
             {paymentMethods.map((method, index) => (
               <div
                 key={index}
@@ -103,33 +103,33 @@ export default function HowYoutubePays() {
                   activeMethod === index ? 'opacity-100' : 'opacity-0 hidden'
                 }`}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-lg">
-                  <div className="relative h-24 w-24 mx-auto mb-8">
+                <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 mx-auto mb-6 sm:mb-8">
                     <div className="absolute inset-0 bg-purple-100 rounded-full transform transition-transform duration-300 group-hover:scale-110" />
                     <Image
                       src={method.icon}
                       alt={method.title}
                       fill
-                      className="object-contain p-4"
+                      className="object-contain p-3 sm:p-4"
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-6">{method.title}</h3>
-                    <p className="text-gray-600 mb-8 text-lg leading-relaxed">{method.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">{method.title}</h3>
+                    <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">{method.description}</p>
                     {method.requirements && (
-                      <h4 className="text-xl font-medium text-purple-600 mb-6">{method.requirements}</h4>
+                      <h4 className="text-lg sm:text-xl font-medium text-purple-600 mb-4 sm:mb-6">{method.requirements}</h4>
                     )}
-                    <ul className="text-left space-y-4">
+                    <ul className="text-left space-y-3 sm:space-y-4">
                       {method.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-purple-500 mr-4 mt-1 text-xl">•</span>
-                          <span className="text-gray-600 text-lg leading-relaxed">{detail}</span>
+                          <span className="text-purple-500 mr-3 sm:mr-4 mt-1 text-lg sm:text-xl">•</span>
+                          <span className="text-base sm:text-lg text-gray-600 leading-relaxed">{detail}</span>
                         </li>
                       ))}
                     </ul>
                     {method.note && (
-                      <div className="mt-8 p-6 bg-purple-50 rounded-xl">
-                        <p className="text-base text-purple-700 italic">{method.note}</p>
+                      <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-purple-50 rounded-lg sm:rounded-xl">
+                        <p className="text-sm sm:text-base text-purple-700 italic">{method.note}</p>
                       </div>
                     )}
                   </div>
