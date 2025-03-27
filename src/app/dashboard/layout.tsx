@@ -119,7 +119,7 @@ export default function DashboardLayout({
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Main Navigation */}
       <nav className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
@@ -306,7 +306,7 @@ export default function DashboardLayout({
       </nav>
 
       {/* Features Navigation */}
-      <nav className="bg-gray-50 border-b border-gray-200">
+      <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
           <div className="h-14 sm:h-12 relative">
             <div className="flex items-center overflow-x-auto hide-scrollbar space-x-3 sm:space-x-6 h-full py-1 sm:py-0">
@@ -336,7 +336,7 @@ export default function DashboardLayout({
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 px-3 sm:px-0">
+      <main className="flex-1 bg-white">
         {children}
       </main>
 
