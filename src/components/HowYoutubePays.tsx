@@ -57,37 +57,37 @@ export default function HowYoutubePays() {
       <div className="flex flex-col lg:flex-row">
         {/* Left Side - Sticky Navigation */}
         <div className="w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-screen bg-white border-b lg:border-b-0 lg:border-r border-gray-100">
-          <div className="p-6 sm:p-8 lg:p-12 flex flex-col min-h-[50vh] lg:min-h-screen">
-            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">How YouTube Pays</h2>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+          <div className="p-4 sm:p-6 lg:p-12 flex flex-col min-h-[auto] lg:min-h-screen">
+            <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
+              <div className="text-center mb-4 sm:mb-6">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">How YouTube Pays</h2>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   Here&apos;s a simplified explanation of how YouTube pays its creators
                 </p>
               </div>
               
-              <nav className="space-y-3">
+              <nav className="space-y-2">
                 {paymentMethods.map((method, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveMethod(index)}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 ${
                       activeMethod === index
                         ? 'bg-purple-50 text-purple-700 font-medium border border-purple-100'
                         : 'text-gray-600 hover:bg-gray-50 border border-gray-100'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="relative h-8 w-8">
+                      <div className="relative h-7 w-7 sm:h-8 sm:w-8">
                         <div className={`absolute inset-0 ${activeMethod === index ? 'bg-purple-100' : 'bg-gray-100'} rounded-full transform transition-transform duration-300 group-hover:scale-110`} />
                         <Image
                           src={method.icon}
                           alt={method.title}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-1.5 sm:p-2"
                         />
                       </div>
-                      <span className="text-base">{method.title}</span>
+                      <span className="text-sm sm:text-base">{method.title}</span>
                     </div>
                   </button>
                 ))}
@@ -98,7 +98,7 @@ export default function HowYoutubePays() {
 
         {/* Right Side - Scrollable Content */}
         <div className="w-full lg:w-1/2">
-          <div className="p-6 sm:p-8 lg:p-12">
+          <div className="p-4 sm:p-6 lg:p-12">
             {paymentMethods.map((method, index) => (
               <div
                 key={index}
@@ -106,33 +106,33 @@ export default function HowYoutubePays() {
                   activeMethod === index ? 'opacity-100' : 'opacity-0 hidden'
                 }`}
               >
-                <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 mx-auto mb-6 sm:mb-8">
+                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
+                  <div className="relative h-16 w-16 sm:h-20 sm:w-20 mx-auto mb-4 sm:mb-6">
                     <div className="absolute inset-0 bg-purple-100 rounded-full transform transition-transform duration-300 group-hover:scale-110" />
                     <Image
                       src={method.icon}
                       alt={method.title}
                       fill
-                      className="object-contain p-3 sm:p-4"
+                      className="object-contain p-3"
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">{method.title}</h3>
-                    <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">{method.description}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">{method.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">{method.description}</p>
                     {method.requirements && (
-                      <h4 className="text-lg sm:text-xl font-medium text-purple-600 mb-4 sm:mb-6">{method.requirements}</h4>
+                      <h4 className="text-base sm:text-lg font-medium text-purple-600 mb-3 sm:mb-4">{method.requirements}</h4>
                     )}
-                    <ul className="text-left space-y-3 sm:space-y-4">
+                    <ul className="text-left space-y-2 sm:space-y-3">
                       {method.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-purple-500 mr-3 sm:mr-4 mt-1 text-lg sm:text-xl">•</span>
-                          <span className="text-base sm:text-lg text-gray-600 leading-relaxed">{detail}</span>
+                          <span className="text-purple-500 mr-2 sm:mr-3 mt-1 text-base sm:text-lg">•</span>
+                          <span className="text-sm sm:text-base text-gray-600 leading-relaxed">{detail}</span>
                         </li>
                       ))}
                     </ul>
                     {method.note && (
-                      <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-purple-50 rounded-lg sm:rounded-xl">
-                        <p className="text-sm sm:text-base text-purple-700 italic">{method.note}</p>
+                      <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-purple-50 rounded-lg">
+                        <p className="text-xs sm:text-sm text-purple-700 italic">{method.note}</p>
                       </div>
                     )}
                   </div>
