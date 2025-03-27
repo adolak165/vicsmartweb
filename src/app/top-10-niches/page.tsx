@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 
 const TopNichesPage = () => {
@@ -65,33 +66,44 @@ const TopNichesPage = () => {
   ]
 
   return (
-    <main className="min-h-screen pt-20 pb-16">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
-          Top 10 Profitable YouTube Niches
-        </h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Top 10 Profitable YouTube Niches
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+            Discover the most lucrative niches for your YouTube channel and maximize your earning potential
+          </p>
+        </div>
+
+        {/* Niches Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {niches.map((niche, index) => (
-            <div 
+            <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+              className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10"
             >
-              <div className="flex items-center gap-2 mb-4">
-                <span className="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
-                  {index + 1}
-                </span>
-                <h2 className="text-2xl font-bold">{niche.title}</h2>
-              </div>
-              <p className="text-gray-600 mb-4">{niche.description}</p>
-              <div className="space-y-2">
-                <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-purple-600 font-semibold">Potential:</p>
-                  <p className="text-gray-600">{niche.potential}</p>
+              <div className="p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center text-lg font-bold">
+                    {index + 1}
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white">{niche.title}</h2>
                 </div>
-                <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-purple-600 font-semibold">Target Audience:</p>
-                  <p className="text-gray-600">{niche.audience}</p>
+                <p className="text-gray-300 mb-6">{niche.description}</p>
+                
+                {/* Details Table */}
+                <div className="space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 py-3 border-t border-white/10">
+                    <span className="text-purple-400 font-medium w-32">Revenue Potential:</span>
+                    <span className="text-gray-300">{niche.potential}</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 py-3 border-t border-white/10">
+                    <span className="text-purple-400 font-medium w-32">Target Audience:</span>
+                    <span className="text-gray-300">{niche.audience}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,17 +112,21 @@ const TopNichesPage = () => {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Channel?</h2>
-          <p className="text-gray-600 mb-8">Let us help you grow in your chosen niche</p>
-          <Link 
-            href="/contact" 
-            className="inline-block bg-purple-600 text-white px-8 py-3 rounded-full font-bold hover:bg-purple-700 transition-colors"
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+            Ready to Start Your YouTube Journey?
+          </h2>
+          <p className="text-gray-300 mb-8 text-lg">
+            Let us help you grow and succeed in your chosen niche
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-purple-600 border border-transparent rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
           >
             Get Started Today
           </Link>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
 
