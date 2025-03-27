@@ -202,7 +202,7 @@ export default function DashboardLayout({
           </div>
 
           {/* Mobile Search Bar */}
-          <div className="sm:hidden px-0 pb-3">
+          <div className="sm:hidden px-0 pb-3 relative" id="search-container">
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
@@ -232,6 +232,75 @@ export default function DashboardLayout({
                 </svg>
               </button>
             </form>
+
+            {/* Search Results Dropdown */}
+            {showSearchResults && searchResults.length > 0 && (
+              <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-[60vh] overflow-y-auto">
+                {searchResults.map((result) => (
+                  <button
+                    key={result.href}
+                    onClick={() => handleSearchResultClick(result.href)}
+                    className="w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 focus:outline-none"
+                  >
+                    <div className="text-gray-500 flex-shrink-0">
+                      {result.icon}
+                    </div>
+                    <span className="text-gray-700 text-left">{result.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Search Bar */}
+          <div className="hidden sm:block relative px-0 pb-3" id="desktop-search-container">
+            <form onSubmit={handleSearch} className="relative max-w-md mx-auto">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  if (e.target.value.trim()) {
+                    const results = features.filter(feature =>
+                      feature.name.toLowerCase().includes(e.target.value.toLowerCase())
+                    )
+                    setSearchResults(results)
+                    setShowSearchResults(true)
+                  } else {
+                    setSearchResults([])
+                    setShowSearchResults(false)
+                  }
+                }}
+                placeholder="Search features..."
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
+              />
+              <button
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
+
+            {/* Desktop Search Results Dropdown */}
+            {showSearchResults && searchResults.length > 0 && (
+              <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                {searchResults.map((result) => (
+                  <button
+                    key={result.href}
+                    onClick={() => handleSearchResultClick(result.href)}
+                    className="w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 focus:outline-none"
+                  >
+                    <div className="text-gray-500 flex-shrink-0">
+                      {result.icon}
+                    </div>
+                    <span className="text-gray-700">{result.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </nav>
