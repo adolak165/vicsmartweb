@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import ReviewSection from '@/components/ReviewSection'
+import Image from 'next/image'
 
 interface Review {
   id: string
@@ -55,17 +56,16 @@ export default function VideoEditingPage() {
         <p className="mt-2 text-sm text-gray-600">Professional video editing services for your content</p>
       </div>
 
-      {/* Featured Video */}
+      {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
-        <video
-          src="/images/videoedit.mp4"
-          className="w-full h-full object-cover"
-          controls
-          playsInline
-          poster="/images/videoedit-poster.jpg"
-        >
-          Your browser does not support the video tag.
-        </video>
+        <Image
+          src="/images/videoe.png"
+          alt="Video Editing Services"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 900px"
+        />
       </div>
 
       <div className="space-y-6">
