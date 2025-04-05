@@ -58,12 +58,11 @@ export default function VideoEditingPage() {
       {/* Featured Video */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <video
-          src="/images/se3.mp4"
+          src="/images/videoedit.mp4"
           className="w-full h-full object-cover"
           controls
-          autoPlay
-          muted
-          loop
+          playsInline
+          poster="/images/videoedit-poster.jpg"
         >
           Your browser does not support the video tag.
         </video>
