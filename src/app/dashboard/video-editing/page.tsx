@@ -59,7 +59,7 @@ export default function VideoEditingPage() {
       {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <Image
-          src="/images/videoe.png"
+          src="/images/videoed.webp"
           alt="Video Editing Services"
           fill
           className="object-cover"
