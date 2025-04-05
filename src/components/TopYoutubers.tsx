@@ -17,7 +17,7 @@ const topYoutubers = [
     name: 'Markiplier',
     subscribers: '37M',
     category: 'Gaming & Comedy',
-    image: '/images/youtube3.jpg'
+    image: '/images/mark.webp'
   },
   {
     name: 'Dude Perfect',

@@ -4,7 +4,7 @@ const awards = [
   {
     name: 'Diamond Play Button',
     description: 'Awarded for reaching 10 million subscribers',
-    image: '/images/award2.png',
+    image: '/images/diamondplay.webp',
     requirements: '10M+ Subscribers'
   },
   {
