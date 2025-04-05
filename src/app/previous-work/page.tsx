@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 
 interface ProjectStats {
   subscribers: string
@@ -22,9 +23,9 @@ const PreviousWorkPage = () => {
       description: "Helped scale a Sport channel from 1K to 10K subscribers in 1 months",
       category: "Sport",
       images: [
-        "/public/images/sport1.webp",
-        "/public/images/sport2.webp",
-        "/public/images/sport3.webp"
+        "/images/sport1.webp",
+        "/images/sport2.webp",
+        "/images/sport3.webp"
       ],
       stats: {
         subscribers: "10K+",
@@ -37,9 +38,9 @@ const PreviousWorkPage = () => {
       description: "Managed content strategy for a growing tech review channel",
       category: "Technology",
       images: [
-        "/team/image4.jpg",
-        "/team/image5.jpg",
-        "/team/image6.jpg"
+        "/images/image4.webp",
+        "/images/image5.webp",
+        "/images/image6.webp"
       ],
       stats: {
         subscribers: "87K+",
@@ -52,9 +53,9 @@ const PreviousWorkPage = () => {
       description: "Created automated movie recap content reaching millions",
       category: "Movie Recap",
       images: [
-        "/team/image7.jpg",
-        "/team/image8.jpg",
-        "/team/image9.jpg"
+        "/images/image7.webp",
+        "/images/image8.webp",
+        "/images/image9.webp"
       ],
       stats: {
         subscribers: "11K+",
@@ -115,11 +116,15 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       {/* Image Carousel */}
       <div className="relative h-64">
         <div className="carousel-container h-full">
-          <img
-            src={project.images[currentImageIndex]}
-            alt={`${project.title} - Image ${currentImageIndex + 1}`}
-            className="w-full h-full object-cover image-zoom"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={project.images[currentImageIndex]}
+              alt={`${project.title} - Image ${currentImageIndex + 1}`}
+              fill
+              className="object-cover image-zoom"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
           
           {/* Navigation Arrows */}
           <button 
