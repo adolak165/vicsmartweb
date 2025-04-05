@@ -49,8 +49,27 @@ export default function VoiceOverPage() {
   ])
 
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <div className="px-4 py-6 sm:px-0">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900">Voice Over</h1>
+        <p className="mt-2 text-sm text-gray-600">Professional voice over services for your videos</p>
+      </div>
+
+      {/* Featured Video */}
+      <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
+        <video
+          src="/images/se4.mp4"
+          className="w-full h-full object-cover"
+          controls
+          autoPlay
+          muted
+          loop
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div className="space-y-6">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Voice-Over Services</h1>
           <Link

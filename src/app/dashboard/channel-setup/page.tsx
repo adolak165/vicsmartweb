@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Review {
   id: string
@@ -48,18 +49,25 @@ export default function ChannelSetupPage() {
   ])
 
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <div className="px-4 py-6 sm:px-0">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Channel Setup Services</h1>
-          <Link
-            href="/dashboard"
-            className="text-sm text-purple-600 hover:text-purple-500"
-          >
-            Back to Dashboard
-          </Link>
-        </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900">Channel Setup</h1>
+        <p className="mt-2 text-sm text-gray-600">Optimize your YouTube channel for success</p>
+      </div>
 
+      {/* Featured Image */}
+      <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
+        <Image
+          src="/images/se1.jpeg"
+          alt="Channel Setup Services"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 900px"
+        />
+      </div>
+
+      <div className="space-y-6">
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="prose max-w-none">
             <p className="text-gray-700 mb-6">
