@@ -10,19 +10,19 @@ const awards = [
   {
     name: 'Gold Play Button',
     description: 'Awarded for reaching 1 million subscribers',
-    image: '/images/award3.jpg',
+    image: '/images/goldplay.webp',
     requirements: '1M+ Subscribers'
   },
   {
     name: 'Silver Play Button',
     description: 'Awarded for reaching 100 thousand subscribers',
-    image: '/images/award4.jpg',
+    image: '/images/silverplay.webp',
     requirements: '100K+ Subscribers'
   },
   {
     name: 'Red diamond Play Button',
     description: 'Awarded for reaching 100 million subscribers',
-    image: '/images/award5.png',
+    image: '/images/reddiamond.webp',
     requirements: '100M+ Subscribers'
   }
 ]
