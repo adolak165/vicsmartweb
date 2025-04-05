@@ -59,7 +59,7 @@ export default function ThumbnailPage() {
       {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <Image
-          src="/images/se5.jpg"
+          src="/images/thumb.webp"
           alt="Thumbnail Design Services"
           fill
           className="object-cover"

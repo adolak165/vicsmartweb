@@ -59,8 +59,8 @@ export default function SEOPage() {
       {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <Image
-          src="/images/se7.jpeg"
-          alt="SEO Optimization Services"
+          src="/images/seo.webp"
+          alt="SEO Services"
           fill
           className="object-cover"
           priority

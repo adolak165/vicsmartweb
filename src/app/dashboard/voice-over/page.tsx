@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import ReviewSection from '@/components/ReviewSection'
+import Image from 'next/image'
 
 interface Review {
   id: string
@@ -55,18 +56,16 @@ export default function VoiceOverPage() {
         <p className="mt-2 text-sm text-gray-600">Professional voice over services for your videos</p>
       </div>
 
-      {/* Featured Video */}
+      {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
-        <video
-          src="/images/se4.mp4"
-          className="w-full h-full object-cover"
-          controls
-          autoPlay
-          muted
-          loop
-        >
-          Your browser does not support the video tag.
-        </video>
+        <Image
+          src="/images/voice.webp"
+          alt="Voice Over Services"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 900px"
+        />
       </div>
 
       <div className="space-y-6">

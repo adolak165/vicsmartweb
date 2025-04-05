@@ -59,7 +59,7 @@ export default function MonetizationPage() {
       {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <Image
-          src="/images/se6.png"
+          src="/images/mone.webp"
           alt="Monetization Services"
           fill
           className="object-cover"
