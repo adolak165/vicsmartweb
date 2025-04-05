@@ -58,7 +58,7 @@ export default function ChannelSetupPage() {
       {/* Featured Image */}
       <div className="relative w-full aspect-[9/5] max-w-[900px] max-h-[500px] mb-8 rounded-lg overflow-hidden">
         <Image
-          src="/images/se1.jpeg"
+          src="/images/channelsetup.webp"
           alt="Channel Setup Services"
           fill
           className="object-cover"
