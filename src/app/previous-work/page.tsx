@@ -22,9 +22,9 @@ const PreviousWorkPage = () => {
       description: "Helped scale a Sport channel from 1K to 10K subscribers in 1 months",
       category: "Sport",
       images: [
-        "/team/image1.jpg",
-        "/team/image2.jpg",
-        "/team/image3.jpg"
+        "/public/images/sport1.webp",
+        "/public/images/sport2.webp",
+        "/public/images/sport3.webp"
       ],
       stats: {
         subscribers: "10K+",
