@@ -120,6 +120,20 @@ export default function OrdersPage() {
     }
   }
 
+  const calculateDaysRemaining = (deadline: string) => {
+    const today = new Date()
+    const deadlineDate = new Date(deadline)
+    const diffTime = deadlineDate.getTime() - today.getTime()
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays
+  }
+
+  const getCountdownColor = (daysRemaining: number) => {
+    if (daysRemaining <= 1) return 'text-red-600'
+    if (daysRemaining <= 3) return 'text-yellow-600'
+    return 'text-green-600'
+  }
+
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (selectedOrder) {
@@ -267,15 +281,31 @@ export default function OrdersPage() {
                     <p className="font-medium text-gray-900">{new Date(order.deadline).toLocaleDateString()}</p>
                   </div>
                   <div>
-                    <p className="text-gray-500">Progress</p>
-                    <div className="mt-1">
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-purple-600 h-2 rounded-full"
-                          style={{ width: `${order.progress}%` }}
-                        />
+                    <p className="text-gray-500">Time Remaining</p>
+                    {order.status !== 'completed' ? (
+                      <div className="flex items-center space-x-1">
+                        <svg 
+                          className={`w-4 h-4 ${getCountdownColor(calculateDaysRemaining(order.deadline))}`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
+                          />
+                        </svg>
+                        <span className={`font-medium ${getCountdownColor(calculateDaysRemaining(order.deadline))}`}>
+                          {calculateDaysRemaining(order.deadline) > 0 
+                            ? `${calculateDaysRemaining(order.deadline)} days left`
+                            : 'Due today'}
+                        </span>
                       </div>
-                    </div>
+                    ) : (
+                      <span className="font-medium text-green-600">Completed</span>
+                    )}
                   </div>
                 </div>
               </div>
