@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="absolute inset-0">
             {/* Replace src with your image path */}
             <Image
-              src="/images/monetize.jpg"
+              src="/images/monetize.webp"
               alt="Hero Background"
               fill
               className="object-cover"
