@@ -5,7 +5,7 @@ const topYoutubers = [
     name: 'PewDiePie',
     subscribers: '110M',
     category: 'Gaming & Entertainment',
-    image: '/images/youtube1.jpg'
+    image: '/images/pew.webp'
   },
   {
     name: 'MrBeast',
