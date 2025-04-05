@@ -64,26 +64,26 @@ export default function DashboardPage() {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 space-y-4 sm:space-y-6">
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg overflow-hidden">
-          <div className="px-4 py-5 sm:px-6 sm:py-8">
-            <div className="flex flex-col items-center sm:items-start gap-4 sm:gap-0 sm:flex-row sm:justify-between">
-              <div className="text-center sm:text-left max-w-[280px] sm:max-w-none">
-                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1.5 sm:mb-2 truncate">
+          <div className="px-4 py-5 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-4">
+              <div className="text-center sm:text-left">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                   Welcome back, {user?.name}!
                 </h1>
-                <p className="text-sm sm:text-base text-purple-100 leading-snug">
+                <p className="text-sm sm:text-base text-purple-100">
                   Here&apos;s what&apos;s happening with your account today.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <Link
                   href="/dashboard/orders"
-                  className="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-purple-600 bg-white hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-purple-600 bg-white hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
                 >
                   View Orders
                 </Link>
                 <Link
                   href="/dashboard/profile"
-                  className="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-white border border-white/30 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full text-white border border-white/30 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
                 >
                   Edit Profile
                 </Link>

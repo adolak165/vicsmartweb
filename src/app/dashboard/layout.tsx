@@ -13,43 +13,79 @@ export default function DashboardLayout({
   const pathname = usePathname()
   const [user, setUser] = useState<{ name: string; email: string } | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<Array<{ name: string; href: string; icon: React.ReactNode }>>([])
+  const [searchResults, setSearchResults] = useState<Array<{ name: string; href: string; icon: React.ReactNode; description: string }>>([])
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [orderCount, setOrderCount] = useState(0)
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const features = [
-    { name: 'Channel Setup', href: '/dashboard/channel-setup', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-      </svg>
-    )},
-    { name: 'Video Editing', href: '/dashboard/video-editing', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-      </svg>
-    )},
-    { name: 'Voice Over', href: '/dashboard/voice-over', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-      </svg>
-    )},
-    { name: 'Thumbnail', href: '/dashboard/thumbnail', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    )},
-    { name: 'Monetization', href: '/dashboard/monetization', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    )},
-    { name: 'SEO', href: '/dashboard/seo', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    )}
+    { 
+      name: 'Channel Setup', 
+      href: '/dashboard/channel-setup',
+      keywords: ['youtube channel', 'setup', 'channel optimization', 'channel creation', 'youtube setup'],
+      description: 'Setup and optimize your YouTube channel for success',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+      )
+    },
+    { 
+      name: 'Video Editing', 
+      href: '/dashboard/video-editing',
+      keywords: ['edit video', 'video production', 'editing', 'cuts', 'transitions', 'effects'],
+      description: 'Professional video editing services for your content',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      )
+    },
+    { 
+      name: 'Voice Over', 
+      href: '/dashboard/voice-over',
+      keywords: ['voice', 'narration', 'audio', 'recording', 'voice acting', 'voice talent'],
+      description: 'Professional voice over services for your videos',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+        </svg>
+      )
+    },
+    { 
+      name: 'Thumbnail', 
+      href: '/dashboard/thumbnail',
+      keywords: ['thumbnail design', 'cover image', 'youtube thumbnail', 'graphic design', 'thumbnails'],
+      description: 'Eye-catching thumbnail designs for better click-through rates',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      )
+    },
+    { 
+      name: 'Monetization', 
+      href: '/dashboard/monetization',
+      keywords: ['money', 'revenue', 'income', 'ads', 'sponsorship', 'youtube money', 'earnings'],
+      description: 'Maximize your YouTube channel revenue and earnings',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
+    },
+    { 
+      name: 'SEO', 
+      href: '/dashboard/seo',
+      keywords: ['search optimization', 'rankings', 'youtube seo', 'visibility', 'tags', 'description'],
+      description: 'Optimize your videos for better search rankings',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      )
+    }
   ]
 
   useEffect(() => {
@@ -73,9 +109,16 @@ export default function DashboardLayout({
       return
     }
 
-    const results = features.filter(feature =>
-      feature.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+    const searchTerms = searchQuery.toLowerCase().split(' ')
+    const results = features.filter(feature => {
+      const nameMatch = feature.name.toLowerCase().includes(searchQuery.toLowerCase())
+      const keywordMatch = feature.keywords.some(keyword => 
+        searchTerms.some(term => keyword.toLowerCase().includes(term))
+      )
+      const descriptionMatch = feature.description.toLowerCase().includes(searchQuery.toLowerCase())
+      return nameMatch || keywordMatch || descriptionMatch
+    })
+
     setSearchResults(results)
     setShowSearchResults(true)
   }
@@ -126,22 +169,78 @@ export default function DashboardLayout({
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/dashboard" className="text-lg sm:text-2xl font-bold text-purple-600">
+              <Link href="/dashboard" className="text-xl sm:text-2xl font-bold text-purple-600">
                 Vicsmart
               </Link>
             </div>
-            
-            {/* Mobile Navigation Icons */}
-            <div className="flex items-center space-x-3 sm:space-x-4">
+
+            {/* Desktop Search Bar */}
+            <div className="hidden sm:flex flex-1 justify-center px-6">
+              <div className="w-full max-w-lg relative">
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value)
+                      if (e.target.value.trim()) {
+                        const results = features.filter(feature =>
+                          feature.name.toLowerCase().includes(e.target.value.toLowerCase())
+                        )
+                        setSearchResults(results)
+                        setShowSearchResults(true)
+                      } else {
+                        setSearchResults([])
+                        setShowSearchResults(false)
+                      }
+                    }}
+                    placeholder="Search features..."
+                    className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </button>
+                </form>
+
+                {/* Desktop Search Results Dropdown */}
+                {showSearchResults && searchResults.length > 0 && (
+                  <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                    {searchResults.map((result) => (
+                      <button
+                        key={result.href}
+                        onClick={() => handleSearchResultClick(result.href)}
+                        className="w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 focus:outline-none"
+                      >
+                        <div className="text-gray-500 flex-shrink-0">
+                          {result.icon}
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <span className="text-gray-700 font-medium">{result.name}</span>
+                          <span className="text-gray-500 text-sm">{result.description}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right Navigation Items */}
+            <div className="flex items-center space-x-4">
               {/* Orders Link */}
               <Link 
                 href="/dashboard/orders" 
-                className="relative flex items-center p-2.5 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors"
+                className="relative flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 rounded-lg transition-colors"
               >
-                <svg className="w-6 h-6 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-                <span className="hidden sm:inline-block ml-2 font-medium">Orders</span>
+                <span>Orders</span>
                 {orderCount > 0 && (
                   <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs font-medium bg-purple-100 text-purple-800 rounded-full min-w-[1.25rem] text-center">
                     {orderCount}
@@ -152,13 +251,13 @@ export default function DashboardLayout({
               {/* Message Icon */}
               <Link 
                 href="/dashboard/messages"
-                className="relative p-2.5 text-gray-500 hover:text-purple-600 focus:outline-none"
+                className="relative p-2 text-gray-700 hover:text-purple-600 rounded-lg transition-colors"
               >
-                <svg className="w-6 h-6 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
                 {unreadMessages > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[1.25rem] h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs font-medium bg-red-500 text-white rounded-full min-w-[1.25rem] text-center">
                     {unreadMessages}
                   </span>
                 )}
@@ -168,30 +267,30 @@ export default function DashboardLayout({
               <div className="relative" id="profile-dropdown">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center space-x-2 p-1.5 text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition-colors focus:outline-none"
+                  className="flex items-center p-2 text-gray-700 hover:text-purple-600 rounded-lg transition-colors focus:outline-none"
                 >
                   <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
                     <span className="text-purple-600 font-medium">
-                      {user?.name?.charAt(0)?.toUpperCase() || '?'}
+                      {user?.name?.charAt(0)?.toUpperCase() || 'A'}
                     </span>
                   </div>
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 sm:w-48 bg-white rounded-lg shadow-lg py-1 z-50">
-                    <div className="px-4 py-3 border-b border-gray-100">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+                    <div className="px-4 py-2 border-b border-gray-100">
                       <p className="text-sm font-medium text-gray-900">{user?.name || 'Guest'}</p>
                       <p className="text-sm text-gray-600 truncate">{user?.email}</p>
                     </div>
                     <Link
                       href="/dashboard/profile"
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       Profile Settings
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-gray-50"
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
                     >
                       Sign out
                     </button>
@@ -202,59 +301,8 @@ export default function DashboardLayout({
           </div>
 
           {/* Mobile Search Bar */}
-          <div className="sm:hidden px-0 pb-3 relative" id="search-container">
+          <div className="sm:hidden px-2 pb-3">
             <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value)
-                  if (e.target.value.trim()) {
-                    const results = features.filter(feature =>
-                      feature.name.toLowerCase().includes(e.target.value.toLowerCase())
-                    )
-                    setSearchResults(results)
-                    setShowSearchResults(true)
-                  } else {
-                    setSearchResults([])
-                    setShowSearchResults(false)
-                  }
-                }}
-                placeholder="Search features..."
-                className="w-full px-4 py-2.5 text-base text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
-              />
-              <button
-                type="submit"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            </form>
-
-            {/* Search Results Dropdown */}
-            {showSearchResults && searchResults.length > 0 && (
-              <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-[60vh] overflow-y-auto">
-                {searchResults.map((result) => (
-                  <button
-                    key={result.href}
-                    onClick={() => handleSearchResultClick(result.href)}
-                    className="w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 focus:outline-none"
-                  >
-                    <div className="text-gray-500 flex-shrink-0">
-                      {result.icon}
-                    </div>
-                    <span className="text-gray-700 text-left">{result.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Desktop Search Bar */}
-          <div className="hidden sm:block relative px-0 pb-3" id="desktop-search-container">
-            <form onSubmit={handleSearch} className="relative max-w-md mx-auto">
               <input
                 type="text"
                 value={searchQuery}
@@ -284,9 +332,9 @@ export default function DashboardLayout({
               </button>
             </form>
 
-            {/* Desktop Search Results Dropdown */}
+            {/* Mobile Search Results Dropdown */}
             {showSearchResults && searchResults.length > 0 && (
-              <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+              <div className="absolute z-50 w-[calc(100%-1rem)] mx-2 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-[60vh] overflow-y-auto">
                 {searchResults.map((result) => (
                   <button
                     key={result.href}
@@ -296,7 +344,10 @@ export default function DashboardLayout({
                     <div className="text-gray-500 flex-shrink-0">
                       {result.icon}
                     </div>
-                    <span className="text-gray-700">{result.name}</span>
+                    <div className="flex flex-col items-start">
+                      <span className="text-gray-700 font-medium">{result.name}</span>
+                      <span className="text-gray-500 text-sm">{result.description}</span>
+                    </div>
                   </button>
                 ))}
               </div>
