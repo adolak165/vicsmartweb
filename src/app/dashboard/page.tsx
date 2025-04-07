@@ -17,13 +17,13 @@ export default function DashboardPage() {
       link: '/dashboard/video-editing'
     },
     {
-      image: '/images/channelgrowth.jpg',
+      image: '/images/channelgrowth.webp',
       title: 'Channel Growth Strategies',
       description: 'Grow your YouTube channel with proven techniques',
       link: '/dashboard/channel-setup'
     },
     {
-      image: '/images/monetize.jpg',
+      image: '/images/monetize.webp',
       title: 'Monetization Guide',
       description: 'Learn how to monetize your content effectively',
       link: '/dashboard/monetization'
