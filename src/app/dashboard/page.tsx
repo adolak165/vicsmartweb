@@ -160,17 +160,6 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
-
-        {/* Fixed Screen Image Section */}
-        <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] overflow-hidden rounded-xl shadow-lg">
-          <Image
-            src="/images/yt6.jpg"
-            alt="Dashboard Background"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
       </div>
     </div>
   )
