@@ -35,7 +35,7 @@ export default function DashboardPage() {
     {
       image: '/images/tip1.webp',
       title: 'Celebrity Gossip',
-      description: 'Get the latest scoop on your favorite stars with the ultimate celebrity gossip destination!'
+      description: 'Get the latest scoop on your favorite stars with the ultimate celebrity gossip destination!'
     },
     {
       image: '/images/tip2.webp',
@@ -307,7 +307,7 @@ export default function DashboardPage() {
             {/* New Content Section */}
             <div className="mt-8 space-y-4">
               <h3 className="text-xl font-bold text-gray-900">
-                Want to save time and money without compromising on quality? That's what we're here for.
+                Want to save time and money without compromising on quality? That&apos;s what we&apos;re here for.
               </h3>
               <p className="text-gray-600">
                 We built Vicsmart to help independent and results-oriented Youtubers like you get talented freelancers for all your business needs.
@@ -316,10 +316,10 @@ export default function DashboardPage() {
                 On Vicsmart, Will excited to offer my services to your business through the Catalog, competing alongside thousands of other talented professionals. These services are sold like convenient grab-and-go items in a real store. On our platform, there are no confusing and costly hourly rates.
               </p>
               <p className="text-gray-600">
-                There's also no more haggling over price and deadlines. Prices, deadlines, and services included are specified in advance, saving you time, money, and energy.
+                There&apos;s also no more haggling over price and deadlines. Prices, deadlines, and services included are specified in advance, saving you time, money, and energy.
               </p>
               <p className="text-gray-600">
-                You can shop freelance services with confidence on Vicsmart. If anything ever goes wrong, you're protected by our 100% Money Back Guarantee, one-of-a-kind Buyer Protection Program, and incredible Support Team.
+                You can shop freelance services with confidence on Vicsmart. If anything ever goes wrong, you&apos;re protected by our 100% Money Back Guarantee, one-of-a-kind Buyer Protection Program, and incredible Support Team.
               </p>
               <div className="mt-4">
                 <Link
