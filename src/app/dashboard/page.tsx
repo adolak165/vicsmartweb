@@ -211,7 +211,7 @@ export default function DashboardPage() {
                   Quality Content, Without Breaking the Bank
                 </h2>
                 <p className="text-lg text-gray-600">
-                  Want to save time and money without compromising on quality? That's what we're here for.
+                  Want to save time and money without compromising on quality? That&apos;s what we&apos;re here for.
                   We built Vicsmart to help independent and results-oriented Youtubers like you get talented 
                   freelancers for all your business needs.
                 </p>
@@ -241,7 +241,7 @@ export default function DashboardPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Clear Terms</h3>
                   <p className="text-gray-600">
-                    Prices, deadlines, and services are specified upfront. No more haggling or uncertainty about what you're getting.
+                    Prices, deadlines, and services are specified upfront. No more haggling or uncertainty about what you&apos;re getting.
                   </p>
                 </div>
 
