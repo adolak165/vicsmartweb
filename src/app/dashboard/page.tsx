@@ -323,7 +323,7 @@ export default function DashboardPage() {
               </p>
               <div className="mt-4">
                 <Link
-                  href="/dashboard/services"
+                  href="/dashboard/messages"
                   className="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
                 >
                   Why wait? Get things done today!
