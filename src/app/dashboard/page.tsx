@@ -8,7 +8,12 @@ export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<{ name: string; email: string } | null>(null)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [currentTipSlide, setCurrentTipSlide] = useState(0)
+
+  const [stats, setStats] = useState({
+    clients: 0,
+    projects: 0,
+    satisfaction: 0
+  })
 
   const slides = [
     {
@@ -31,44 +36,6 @@ export default function DashboardPage() {
     }
   ]
 
-  const tipSlides = [
-    {
-      image: '/images/tip1.webp',
-      title: 'Celebrity Gossip',
-      description: 'Get the latest scoop on your favorite stars with the ultimate celebrity gossip destination!'
-    },
-    {
-      image: '/images/tip2.webp',
-      title: 'Animal',
-      description: 'Unleash the animal kingdom with the best animal content on the web!'
-    },
-    {
-      image: '/images/tip3.webp',
-      title: 'Gardening',
-      description: 'Grow your green thumb with the best gardening tips and tricks on the web!'
-    },
-    {
-      image: '/images/tip4.webp',
-      title: 'Basketball',
-      description: 'Dribble through the best basketball content on the web!'
-    },
-    {
-      image: '/images/tip5.webp',
-      title: 'True Crime',
-      description: 'Uncover the truth with the best true crime content on the web!'
-    },
-    {
-      image: '/images/tip6.webp',
-      title: 'Fitness & Health',
-      description: 'Create workout routines and health tips'
-    },
-    {
-      image: '/images/tip7.webp',
-      title: 'Travel Vlogging',
-      description: 'Share travel experiences and tips'
-    }
-  ]
-
   useEffect(() => {
     // In a real app, you would fetch the user data from your backend
     // For now, we'll simulate it with localStorage
@@ -81,7 +48,7 @@ export default function DashboardPage() {
     }
   }, [router])
 
-  // Auto slide functionality for main carousel
+  // Auto slide functionality
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -90,13 +57,38 @@ export default function DashboardPage() {
     return () => clearInterval(timer)
   }, [])
 
-  // Auto slide functionality for tips carousel
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTipSlide((prev) => (prev + 1) % tipSlides.length)
-    }, 4000)
+    const targetStats = {
+      clients: 1000,
+      projects: 2500,
+      satisfaction: 98
+    }
 
-    return () => clearInterval(timer)
+    const duration = 2000 // 2 seconds
+    const steps = 60
+    const interval = duration / steps
+
+    const animate = () => {
+      let currentStep = 0
+      const timer = setInterval(() => {
+        currentStep++
+        setStats({
+          clients: Math.floor((targetStats.clients * currentStep) / steps),
+          projects: Math.floor((targetStats.projects * currentStep) / steps),
+          satisfaction: Math.floor((targetStats.satisfaction * currentStep) / steps)
+        })
+
+        if (currentStep >= steps) {
+          clearInterval(timer)
+        }
+      }, interval)
+    }
+
+    // Start animation when component mounts
+    animate()
+
+    // Cleanup
+    return () => clearInterval(interval)
   }, [])
 
   const nextSlide = () => {
@@ -105,14 +97,6 @@ export default function DashboardPage() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
-
-  const nextTipSlide = () => {
-    setCurrentTipSlide((prev) => (prev + 1) % tipSlides.length)
-  }
-
-  const prevTipSlide = () => {
-    setCurrentTipSlide((prev) => (prev - 1 + tipSlides.length) % tipSlides.length)
   }
 
   return (
@@ -217,117 +201,121 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* New Tips Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Column - Carousel */}
-          <div className="relative w-full h-[896px] overflow-hidden rounded-xl shadow-lg">
-            {tipSlides.map((slide, index) => (
-              <div
-                key={index}
-                className={`absolute w-full h-full transition-opacity duration-500 ${
-                  index === currentTipSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <div className="relative w-full h-full bg-gray-100">
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
+        {/* Value Proposition Section */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="p-6 sm:p-8">
+            <div className="max-w-4xl mx-auto space-y-8">
+              {/* Main Value Proposition */}
+              <div className="text-center">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                  Quality Content, Without Breaking the Bank
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Want to save time and money without compromising on quality? That's what we're here for.
+                  We built Vicsmart to help independent and results-oriented Youtubers like you get talented 
+                  freelancers for all your business needs.
+                </p>
+              </div>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Feature 1 */}
+                <div className="bg-purple-50 rounded-lg p-6">
+                  <div className="text-purple-600 mb-4">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Simple Catalog Services</h3>
+                  <p className="text-gray-600">
+                    Browse our catalog of pre-packaged services with clear pricing and deliverables. No confusing hourly rates or hidden fees.
+                  </p>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="bg-purple-50 rounded-lg p-6">
+                  <div className="text-purple-600 mb-4">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Clear Terms</h3>
+                  <p className="text-gray-600">
+                    Prices, deadlines, and services are specified upfront. No more haggling or uncertainty about what you're getting.
+                  </p>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="bg-purple-50 rounded-lg p-6">
+                  <div className="text-purple-600 mb-4">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">100% Protected</h3>
+                  <p className="text-gray-600">
+                    Shop with confidence with our Money Back Guarantee, Buyer Protection Program, and dedicated Support Team.
+                  </p>
                 </div>
               </div>
-            ))}
 
-            {/* Navigation Buttons */}
-            <div className="absolute inset-0 flex items-center justify-between px-4">
-              <button
-                onClick={prevTipSlide}
-                className="bg-black/20 hover:bg-black/30 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white transition-colors"
-                aria-label="Previous slide"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={nextTipSlide}
-                className="bg-black/20 hover:bg-black/30 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white transition-colors"
-                aria-label="Next slide"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Slide Indicators */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-              {tipSlides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTipSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentTipSlide ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+              {/* Call to Action */}
+              <div className="text-center">
+                <p className="text-lg text-gray-600 mb-6">
+                  Why wait? Get things done today!
+                </p>
+                <Link
+                  href="/dashboard/services"
+                  className="inline-flex items-center px-6 py-3 text-base font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                >
+                  Browse Services
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Right Column - Content */}
-          <div className="flex flex-col justify-start p-4 lg:p-6">
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-              Top 5 YouTube Channel Ideas to Start in 2025
-            </h2>
-            <div className="space-y-4">
-              {tipSlides.slice(0, 5).map((tip, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center">
-                    <span className="text-purple-600 font-bold text-sm">{index + 1}</span>
+        {/* Statistics Section */}
+        <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg overflow-hidden">
+          <div className="p-8 sm:p-12">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8">
+                Our Impact in Numbers
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Clients Stat */}
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
+                    <span className="count-up">{stats.clients}</span>+
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-gray-900">{tip.title}</h3>
-                    <p className="text-sm text-gray-600 mt-0.5">{tip.description}</p>
-                  </div>
+                  <p className="text-purple-100 text-lg">Happy Clients</p>
                 </div>
-              ))}
-            </div>
-            <div className="mt-6">
-              <Link
-                href="/dashboard/messages"
-                className="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
-              >
-                Get Started with Your Channel
-              </Link>
-            </div>
 
-            {/* New Content Section */}
-            <div className="mt-8 space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">
-                Want to save time and money without compromising on quality? That&apos;s what we&apos;re here for.
-              </h3>
-              <p className="text-gray-600">
-                We built Vicsmart to help independent and results-oriented Youtubers like you get talented freelancers for all your business needs.
-              </p>
-              <p className="text-gray-600">
-                On Vicsmart, Will excited to offer my services to your business through the Catalog, competing alongside thousands of other talented professionals. These services are sold like convenient grab-and-go items in a real store. On our platform, there are no confusing and costly hourly rates.
-              </p>
-              <p className="text-gray-600">
-                There&apos;s also no more haggling over price and deadlines. Prices, deadlines, and services included are specified in advance, saving you time, money, and energy.
-              </p>
-              <p className="text-gray-600">
-                You can shop freelance services with confidence on Vicsmart. If anything ever goes wrong, you&apos;re protected by our 100% Money Back Guarantee, one-of-a-kind Buyer Protection Program, and incredible Support Team.
-              </p>
-              <div className="mt-4">
-                <Link
-                  href="/dashboard/messages"
-                  className="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
-                >
-                  Why wait? Get things done today!
-                </Link>
+                {/* Projects Stat */}
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
+                    <span className="count-up">{stats.projects}</span>+
+                  </div>
+                  <p className="text-purple-100 text-lg">Projects Completed</p>
+                </div>
+
+                {/* Satisfaction Stat */}
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
+                    <span className="count-up">{stats.satisfaction}</span>%
+                  </div>
+                  <p className="text-purple-100 text-lg">Client Satisfaction</p>
+                </div>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="text-purple-100 text-lg">
+                  Join our growing community of successful YouTubers
+                </p>
               </div>
             </div>
           </div>
