@@ -53,11 +53,11 @@ export default function HowYoutubePays() {
   const [activeMethod, setActiveMethod] = useState(0)
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <section className="bg-gradient-to-b from-gray-50 to-white">
       <div className="flex flex-col lg:flex-row">
         {/* Left Side - Sticky Navigation */}
-        <div className="w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-screen bg-white border-b lg:border-b-0 lg:border-r border-gray-100">
-          <div className="p-4 sm:p-6 lg:p-12 flex flex-col min-h-[auto] lg:min-h-screen">
+        <div className="w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-[calc(100vh-4rem)] bg-white border-b lg:border-b-0 lg:border-r border-gray-100">
+          <div className="p-4 sm:p-6 lg:p-8 flex flex-col h-full">
             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
               <div className="text-center mb-4 sm:mb-6">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">How YouTube Pays</h2>
@@ -98,7 +98,7 @@ export default function HowYoutubePays() {
 
         {/* Right Side - Scrollable Content */}
         <div className="w-full lg:w-1/2">
-          <div className="p-4 sm:p-6 lg:p-12">
+          <div className="p-4 sm:p-6 lg:p-8 pb-8">
             {paymentMethods.map((method, index) => (
               <div
                 key={index}
