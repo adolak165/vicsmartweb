@@ -86,6 +86,18 @@ export default function SEOPage() {
                   <li>Monthly report</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $39</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'SEO - Basic Package',
+                      price: 39
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -98,6 +110,18 @@ export default function SEOPage() {
                   <li>Weekly report</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $79</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'SEO - Standard Package',
+                      price: 79
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -110,6 +134,18 @@ export default function SEOPage() {
                   <li>Daily report</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $149</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'SEO - Premium Package',
+                      price: 149
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
 

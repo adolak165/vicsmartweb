@@ -86,6 +86,18 @@ export default function ThumbnailPage() {
                   <li>24-hour delivery</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $19</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Thumbnail Design - Basic Package',
+                      price: 19
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -98,6 +110,18 @@ export default function ThumbnailPage() {
                   <li>12-hour delivery</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $39</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Thumbnail Design - Standard Package',
+                      price: 39
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -110,6 +134,18 @@ export default function ThumbnailPage() {
                   <li>6-hour delivery</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $79</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Thumbnail Design - Premium Package',
+                      price: 79
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
 

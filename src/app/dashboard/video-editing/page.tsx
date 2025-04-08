@@ -96,6 +96,18 @@ export default function VideoEditingPage() {
                   <li>Text overlays</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $39</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Video Editing - Basic Package',
+                      price: 39
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -108,6 +120,18 @@ export default function VideoEditingPage() {
                   <li>Motion graphics</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $79</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Video Editing - Standard Package',
+                      price: 79
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -120,6 +144,18 @@ export default function VideoEditingPage() {
                   <li>Sound design</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $149</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Video Editing - Premium Package',
+                      price: 149
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
 

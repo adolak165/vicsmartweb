@@ -96,6 +96,18 @@ export default function MonetizationPage() {
                   <li>Basic strategy report</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $49</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Monetization - Basic Package',
+                      price: 49
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -108,6 +120,18 @@ export default function MonetizationPage() {
                   <li>Detailed analytics report</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $99</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Monetization - Standard Package',
+                      price: 99
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -120,6 +144,18 @@ export default function MonetizationPage() {
                   <li>Comprehensive strategy plan</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $199</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Monetization - Premium Package',
+                      price: 199
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
 

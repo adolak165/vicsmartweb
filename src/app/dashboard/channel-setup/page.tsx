@@ -85,6 +85,18 @@ export default function ChannelSetupPage() {
                   <li>Basic channel art</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $29</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Channel Setup - Basic Package',
+                      price: 29
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -97,6 +109,18 @@ export default function ChannelSetupPage() {
                   <li>Social media integration</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $59</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Channel Setup - Standard Package',
+                      price: 59
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
@@ -109,6 +133,18 @@ export default function ChannelSetupPage() {
                   <li>Monetization preparation</li>
                 </ul>
                 <p className="mt-4 text-purple-900 font-medium">Starting at $99</p>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: 'Channel Setup - Premium Package',
+                      price: 99
+                    }
+                  }}
+                  className="mt-4 block w-full text-center bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
 

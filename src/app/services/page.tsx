@@ -1,3 +1,6 @@
+'use client'
+import Link from 'next/link'
+
 export default function ServicesPage() {
   const mainServices = [
     {
@@ -12,7 +15,8 @@ export default function ServicesPage() {
         "Creation of 30 video and uploading"
       ],
       icon: "🤖",
-      price: "Starting at $997/month"
+      price: 997,
+      priceDisplay: "Starting at $997/month"
     },
     {
       title: "Content Creation & Editing",
@@ -25,7 +29,8 @@ export default function ServicesPage() {
         "Professional transitions"
       ],
       icon: "🎥",
-      price: "Starting at $497/video"
+      price: 497,
+      priceDisplay: "Starting at $497/video"
     },
     {
       title: "YouTube SEO & Optimization",
@@ -38,7 +43,8 @@ export default function ServicesPage() {
         "Channel optimization"
       ],
       icon: "🎯",
-      price: "Starting at $297/month"
+      price: 297,
+      priceDisplay: "Starting at $297/month"
     }
   ]
 
@@ -96,12 +102,21 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-purple-600 font-semibold">{service.price}</p>
+                <p className="text-purple-600 font-semibold">{service.priceDisplay}</p>
               </div>
               <div className="px-8 py-4 bg-gray-50 border-t">
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors">
-                  Get Started
-                </button>
+                <Link 
+                  href={{
+                    pathname: '/dashboard/payment',
+                    query: { 
+                      service: service.title,
+                      price: service.price
+                    }
+                  }}
+                  className="block w-full bg-purple-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors"
+                >
+                  Purchase Now
+                </Link>
               </div>
             </div>
           ))}
