@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { PaperAirplaneIcon, UserCircleIcon, PaperClipIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
 
 interface Message {
   id: number
