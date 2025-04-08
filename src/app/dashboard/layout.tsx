@@ -18,6 +18,33 @@ export default function DashboardLayout({
   const [orderCount, setOrderCount] = useState(0)
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const [notifications, setNotifications] = useState([
+    { 
+      id: 1, 
+      message: 'Your order #1234 has been completed', 
+      time: '2 hours ago', 
+      read: false,
+      type: 'order',
+      link: '/dashboard/orders/1234'
+    },
+    { 
+      id: 2, 
+      message: 'New message from support team', 
+      time: '1 day ago', 
+      read: false,
+      type: 'message',
+      link: '/dashboard/messages'
+    },
+    { 
+      id: 3, 
+      message: 'Your video editing service is in progress', 
+      time: '2 days ago', 
+      read: true,
+      type: 'service',
+      link: '/dashboard/video-editing'
+    }
+  ])
 
   const features = [
     { 
@@ -131,8 +158,10 @@ export default function DashboardLayout({
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    router.push('/login')
+    if (window.confirm('Are you sure you want to sign out?')) {
+      localStorage.removeItem('user')
+      router.push('/login')
+    }
   }
 
   // Close dropdown when clicking outside
@@ -248,6 +277,66 @@ export default function DashboardLayout({
                 )}
               </Link>
 
+              {/* Notifications */}
+              <div className="relative">
+                <Link
+                  href="/dashboard/notifications"
+                  className="relative p-2 text-gray-700 hover:text-purple-600 rounded-lg transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </Link>
+
+                {isNotificationsOpen && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-1 z-50">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <div className="flex justify-between items-center">
+                        <Link
+                          href="/dashboard/notifications"
+                          className="text-sm font-medium text-gray-900 hover:text-purple-600"
+                        >
+                          Notifications
+                        </Link>
+                        <button
+                          onClick={() => {
+                            setNotifications(notifications.map(n => ({ ...n, read: true })))
+                          }}
+                          className="text-xs text-purple-600 hover:text-purple-700"
+                        >
+                          Mark all as read
+                        </button>
+                      </div>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      {notifications.length > 0 ? (
+                        notifications.map((notification) => (
+                          <Link
+                            key={notification.id}
+                            href={notification.link}
+                            className={`block px-4 py-3 hover:bg-gray-50 ${
+                              !notification.read ? 'bg-purple-50' : ''
+                            }`}
+                            onClick={() => {
+                              setNotifications(notifications.map(n => 
+                                n.id === notification.id ? { ...n, read: true } : n
+                              ))
+                            }}
+                          >
+                            <p className="text-sm text-gray-700">{notification.message}</p>
+                            <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="px-4 py-3 text-sm text-gray-500 text-center">
+                          No notifications
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Message Icon */}
               <Link 
                 href="/dashboard/messages"
@@ -287,6 +376,12 @@ export default function DashboardLayout({
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       Profile Settings
+                    </Link>
+                    <Link
+                      href="/dashboard/orders"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    >
+                      Order History
                     </Link>
                     <button
                       onClick={handleLogout}
