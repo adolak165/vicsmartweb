@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
@@ -13,7 +13,7 @@ interface PaymentDetails {
   cvv: string
 }
 
-export default function PaymentPage() {
+function PaymentForm() {
   const searchParams = useSearchParams()
   const [paymentDetails, setPaymentDetails] = useState<PaymentDetails>({
     service: searchParams.get('service') || '',
@@ -131,5 +131,13 @@ export default function PaymentPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PaymentForm />
+    </Suspense>
   )
 } 
