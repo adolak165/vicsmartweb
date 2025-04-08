@@ -5,10 +5,6 @@ import Link from 'next/link'
 interface UserProfile {
   username: string
   password: string
-  activeServices: Array<{
-    name: string
-    active: boolean
-  }>
   email: string
 }
 
@@ -16,7 +12,6 @@ export default function SettingsPage() {
   const [profile, setProfile] = useState<UserProfile>({
     username: '',
     password: '',
-    activeServices: [],
     email: ''
   })
 
@@ -28,7 +23,6 @@ export default function SettingsPage() {
       setProfile({
         username: user.username || '',
         password: user.password || '',
-        activeServices: user.activeServices || [],
         email: user.email || ''
       })
     }
@@ -90,26 +84,6 @@ export default function SettingsPage() {
                       onChange={(e) => setProfile({ ...profile, email: e.target.value })}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Active Services</label>
-                    <div className="mt-2 space-y-2">
-                      {profile.activeServices.map((service, index) => (
-                        <div key={index} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={service.active}
-                            onChange={() => {
-                              const newServices = [...profile.activeServices]
-                              newServices[index] = { ...service, active: !service.active }
-                              setProfile({ ...profile, activeServices: newServices })
-                            }}
-                            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                          />
-                          <label className="ml-2 block text-sm text-gray-900">{service.name}</label>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </div>
