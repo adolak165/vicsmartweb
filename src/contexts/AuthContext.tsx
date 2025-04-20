@@ -65,8 +65,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) throw error;
 
       return { error: null };
-    } catch (error: any) {
-      return { error: error.message };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      return { error: errorMessage };
     }
   };
 
@@ -84,8 +85,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(session?.user ?? null);
 
       return { error: null };
-    } catch (error: any) {
-      return { error: error.message };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      return { error: errorMessage };
     }
   };
 
@@ -95,8 +97,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) throw error;
       setUser(null);
       router.push('/');
-    } catch (error: any) {
-      console.error('Error signing out:', error.message);
+    } catch (error) {
+      console.error('Error signing out:', error instanceof Error ? error.message : 'An unknown error occurred');
     }
   };
 

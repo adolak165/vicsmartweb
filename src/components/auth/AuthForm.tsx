@@ -34,8 +34,9 @@ export default function AuthForm({ type }: AuthFormProps) {
         }
       });
       if (error) throw error;
-    } catch (error: any) {
-      setErrors([error.message]);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      setErrors([errorMessage]);
     } finally {
       setLoading(false);
     }
@@ -74,8 +75,9 @@ export default function AuthForm({ type }: AuthFormProps) {
           setEmailSent(true);
         }
       }
-    } catch (error: any) {
-      setErrors([error.message]);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      setErrors([errorMessage]);
     } finally {
       setLoading(false);
     }
@@ -95,7 +97,7 @@ export default function AuthForm({ type }: AuthFormProps) {
               Check your email
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              We've sent a confirmation link to {formData.email}
+              We&apos;ve sent a confirmation link to {formData.email}
             </p>
             <p className="mt-2 text-center text-sm text-gray-600">
               Please check your inbox and click the link to confirm your email address.
@@ -224,7 +226,7 @@ export default function AuthForm({ type }: AuthFormProps) {
           <div className="text-sm text-center">
             {type === 'login' ? (
               <p>
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Sign up
                 </Link>
