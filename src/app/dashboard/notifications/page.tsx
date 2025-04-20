@@ -14,12 +14,6 @@ interface Notification {
   createdAt: string
 }
 
-interface ApiError {
-  message: string;
-  status?: number;
-  code?: string;
-}
-
 export default function NotificationsPage() {
   const { user } = useAuth()
   const router = useRouter()
