@@ -4,6 +4,11 @@ import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import Link from 'next/link'
 
+interface AuthError {
+  message: string;
+  status?: number;
+}
+
 export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,7 +25,8 @@ export default function SignupPage() {
     try {
       await signUp(email, password, name)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      const error = err as AuthError
+      setError(error.message || 'An error occurred during sign up')
     } finally {
       setIsLoading(false)
     }
@@ -33,7 +39,8 @@ export default function SignupPage() {
     try {
       await signInWithGoogle()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      const error = err as AuthError
+      setError(error.message || 'An error occurred during Google sign in')
     } finally {
       setIsLoading(false)
     }
