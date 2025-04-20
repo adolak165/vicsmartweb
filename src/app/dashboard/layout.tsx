@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { useAuth } from '@/contexts/AuthContext'
-import NotificationCounters from '@/components/NotificationCounters'
 
 export default function DashboardLayout({
   children,
