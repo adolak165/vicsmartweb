@@ -49,6 +49,14 @@ export default function DashboardLayout({
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
+  // Update order count and unread messages based on notifications
+  useEffect(() => {
+    const unreadOrders = notifications.filter(n => !n.read && n.type === 'order').length
+    const unreadMsg = notifications.filter(n => !n.read && n.type === 'message').length
+    setOrderCount(unreadOrders)
+    setUnreadMessages(unreadMsg)
+  }, [notifications])
+
   const features = [
     { 
       name: 'Channel Setup', 
