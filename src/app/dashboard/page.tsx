@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardPage() {
   const router = useRouter()
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null)
+  const { user } = useAuth()
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const [stats, setStats] = useState({
@@ -35,18 +36,6 @@ export default function DashboardPage() {
       link: '/dashboard/monetization'
     }
   ]
-
-  useEffect(() => {
-    // In a real app, you would fetch the user data from your backend
-    // For now, we'll simulate it with localStorage
-    const userData = localStorage.getItem('user')
-    if (userData) {
-      setUser(JSON.parse(userData))
-    } else {
-      // Redirect to login if no user data is found
-      router.push('/login')
-    }
-  }, [router])
 
   // Auto slide functionality
   useEffect(() => {
@@ -99,6 +88,10 @@ export default function DashboardPage() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
+  if (!user) {
+    return null
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 space-y-4 sm:space-y-6">
@@ -108,7 +101,7 @@ export default function DashboardPage() {
             <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-4">
               <div className="text-center sm:text-left">
                 <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Welcome back, {user?.name}!
+                  Welcome back, {user?.email}!
                 </h1>
                 <p className="text-sm sm:text-base text-purple-100">
                   Here&apos;s what&apos;s happening with your account today.

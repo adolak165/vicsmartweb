@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardLayout({
   children,
@@ -11,7 +12,7 @@ export default function DashboardLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null)
+  const { user, loading } = useAuth()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<Array<{ name: string; href: string; icon: React.ReactNode; description: string }>>([])
   const [showSearchResults, setShowSearchResults] = useState(false)
@@ -116,17 +117,12 @@ export default function DashboardLayout({
   ]
 
   useEffect(() => {
-    const userData = localStorage.getItem('user')
-    if (userData) {
-      setUser(JSON.parse(userData))
-      // Example usage of state setters
-      // In a real app, these would be updated based on actual data from your backend
-      setOrderCount(0)
-      setUnreadMessages(0)
-    } else {
-      router.push('/login')
+    if (!loading) {
+      if (!user) {
+        router.push('/login')
+      }
     }
-  }, [router])
+  }, [user, loading, router])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -189,6 +185,21 @@ export default function DashboardLayout({
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="min-h-screen bg-white">
