@@ -1,4 +1,4 @@
-import { User as SupabaseUser } from '@supabase/supabase-js';
+import { User as SupabaseUser, UserMetadata } from '@supabase/supabase-js';
 
 export interface AuthFormData {
   email: string;
@@ -11,4 +11,9 @@ export interface AuthError {
   status?: number;
 }
 
-export type User = SupabaseUser; 
+export interface User extends SupabaseUser {
+  user_metadata: UserMetadata & {
+    name?: string;
+    avatar_url?: string;
+  };
+} 

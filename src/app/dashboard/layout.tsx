@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { useAuth } from '@/contexts/AuthContext'
+import NotificationCounters from '@/components/NotificationCounters'
 
 export default function DashboardLayout({
   children,
@@ -46,6 +47,8 @@ export default function DashboardLayout({
       link: '/dashboard/video-editing'
     }
   ])
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const features = [
     { 
@@ -375,7 +378,7 @@ export default function DashboardLayout({
                 >
                   <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
                     <span className="text-purple-600 font-medium">
-                      {user?.name?.charAt(0)?.toUpperCase() || 'A'}
+                      {user?.user_metadata?.name?.charAt(0)?.toUpperCase() || 'A'}
                     </span>
                   </div>
                 </button>
@@ -383,7 +386,7 @@ export default function DashboardLayout({
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
                     <div className="px-4 py-2 border-b border-gray-100">
-                      <p className="text-sm font-medium text-gray-900">{user?.name || 'Guest'}</p>
+                      <p className="text-sm font-medium text-gray-900">{user?.user_metadata?.name || 'Guest'}</p>
                       <p className="text-sm text-gray-600 truncate">{user?.email}</p>
                     </div>
                     <Link
