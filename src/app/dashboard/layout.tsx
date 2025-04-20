@@ -46,7 +46,6 @@ export default function DashboardLayout({
       link: '/dashboard/video-editing'
     }
   ])
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Update order count and unread messages based on notifications
   useEffect(() => {
