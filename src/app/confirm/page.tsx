@@ -1,84 +1,96 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+
+interface ApiError {
+  message: string;
+  status?: number;
+  code?: string;
+}
 
 export default function ConfirmPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
+  const { signIn } = useAuth();
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const confirmEmail = async () => {
-      const token = searchParams.get('token');
-      const type = searchParams.get('type');
-
-      if (!token || type !== 'email') {
-        setStatus('error');
-        setError('Invalid confirmation link');
-        return;
-      }
-
       try {
-        const { error } = await supabase.auth.verifyOtp({
-          token_hash: token,
-          type: 'email'
+        const token = searchParams.get('token');
+        if (!token) {
+          throw new Error('No confirmation token found');
+        }
+
+        const response = await fetch('/api/auth/confirm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token }),
         });
 
-        if (error) {
-          setStatus('error');
-          setError(error.message);
-        } else {
-          setStatus('success');
-          // Redirect to login after 3 seconds
-          setTimeout(() => {
-            router.push('/login');
-          }, 3000);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to confirm email');
         }
-      } catch (err: any) {
-        setStatus('error');
-        setError(err.message);
+
+        const data = await response.json();
+        await signIn(data.email, data.password);
+        router.push('/dashboard');
+      } catch (err) {
+        const error = err as ApiError;
+        setError(error.message || 'An error occurred during email confirmation');
+      } finally {
+        setLoading(false);
       }
     };
 
     confirmEmail();
-  }, [searchParams, router]);
+  }, [router, searchParams, signIn]);
 
-  if (status === 'loading') {
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Confirming your email...
-            </h2>
-          </div>
-        </div>
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
       </div>
     );
   }
 
-  if (status === 'error') {
+  if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Confirmation Failed
-            </h2>
-            <p className="mt-2 text-center text-sm text-red-600">
-              {error}
-            </p>
-          </div>
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
           <div className="text-center">
-            <button
-              onClick={() => router.push('/login')}
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Return to login
-            </button>
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+              <svg
+                className="h-6 w-6 text-red-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </div>
+            <h3 className="mt-2 text-lg font-medium text-gray-900">Error</h3>
+            <p className="mt-1 text-sm text-gray-500">{error}</p>
+            <div className="mt-6">
+              <button
+                onClick={() => router.push('/login')}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+              >
+                Back to Login
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -86,15 +98,21 @@ export default function ConfirmPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Email Confirmed!
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Your email has been successfully confirmed. Redirecting to login...
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+        <div className="text-center">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+            <CheckCircleIcon className="h-6 w-6 text-green-600" />
+          </div>
+          <h3 className="mt-2 text-lg font-medium text-gray-900">
+            Email Confirmed
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">
+            Your email has been successfully confirmed. You will be redirected to the dashboard.
           </p>
+          <div className="mt-6">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
+          </div>
         </div>
       </div>
     </div>
