@@ -1,45 +1,24 @@
 'use client'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
+import { BellIcon } from '@heroicons/react/24/outline'
+import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface Notification {
   id: string
+  type: 'order' | 'payment' | 'system'
   title: string
   message: string
-  type: 'info' | 'success' | 'warning' | 'error'
-  date: string
-  isRead: boolean
+  read: boolean
+  createdAt: string
 }
 
 export default function NotificationsPage() {
+  const { user } = useAuth()
   const router = useRouter()
-  const [notifications, setNotifications] = useState<Notification[]>([
-    {
-      id: '1',
-      title: 'New Order Received',
-      message: 'Order #123 has been placed successfully.',
-      type: 'success',
-      date: '2024-03-25',
-      isRead: false
-    },
-    {
-      id: '2',
-      title: 'System Update',
-      message: 'The platform will be undergoing maintenance tomorrow.',
-      type: 'info',
-      date: '2024-03-24',
-      isRead: true
-    },
-    {
-      id: '3',
-      title: 'Payment Failed',
-      message: 'There was an issue processing your last payment.',
-      type: 'error',
-      date: '2024-03-23',
-      isRead: false
-    }
-  ])
+  const [notifications, setNotifications] = useState<Notification[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const userData = localStorage.getItem('user')
@@ -50,7 +29,7 @@ export default function NotificationsPage() {
 
   const handleNotificationClick = (notificationId: string) => {
     setNotifications(notifications.map(notif => 
-      notif.id === notificationId ? { ...notif, isRead: true } : notif
+      notif.id === notificationId ? { ...notif, read: true } : notif
     ))
   }
 
@@ -89,7 +68,7 @@ export default function NotificationsPage() {
                     key={notification.id}
                     onClick={() => handleNotificationClick(notification.id)}
                     className={`p-4 rounded-lg border cursor-pointer transition-colors ${
-                      notification.isRead 
+                      notification.read 
                         ? 'bg-white border-gray-200 hover:bg-gray-50' 
                         : 'bg-purple-50 border-purple-200 hover:bg-purple-100'
                     }`}
@@ -100,7 +79,7 @@ export default function NotificationsPage() {
                           <span className={`px-2 py-1 text-xs font-medium rounded-full ${getTypeColor(notification.type)}`}>
                             {notification.type}
                           </span>
-                          {!notification.isRead && (
+                          {!notification.read && (
                             <span className="h-2 w-2 bg-purple-600 rounded-full"></span>
                           )}
                         </div>
@@ -112,7 +91,7 @@ export default function NotificationsPage() {
                         </p>
                       </div>
                       <span className="text-xs text-gray-500 ml-4">
-                        {new Date(notification.date).toLocaleDateString()}
+                        {new Date(notification.createdAt).toLocaleDateString()}
                       </span>
                     </div>
                   </div>
