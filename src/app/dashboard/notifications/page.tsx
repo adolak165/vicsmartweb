@@ -18,25 +18,26 @@ export default function NotificationsPage() {
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+  // Handle authentication
   useEffect(() => {
-    const checkAuth = () => {
-      const userData = localStorage.getItem('user')
-      if (!userData) {
-        router.push('/login')
-        return false
-      }
-      return true
+    const userData = localStorage.getItem('user')
+    if (!userData) {
+      router.push('/login')
+    } else {
+      setIsAuthenticated(true)
     }
+  }, [router])
+
+  // Fetch notifications only when authenticated
+  useEffect(() => {
+    if (!isAuthenticated) return
 
     const fetchNotifications = async () => {
       try {
         setLoading(true)
         
-        if (!checkAuth()) {
-          return
-        }
-
         // TODO: Replace with actual API call
         const mockNotifications: Notification[] = [
           {
@@ -68,7 +69,7 @@ export default function NotificationsPage() {
     }
 
     fetchNotifications()
-  }, [router])
+  }, [isAuthenticated])
 
   const handleNotificationClick = (notificationId: string) => {
     setNotifications(notifications.map(notif => 
