@@ -20,12 +20,20 @@ export default function NotificationsPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    const checkAuth = () => {
+      const userData = localStorage.getItem('user')
+      if (!userData) {
+        router.push('/login')
+        return false
+      }
+      return true
+    }
+
     const fetchNotifications = async () => {
       try {
         setLoading(true)
-        const userData = localStorage.getItem('user')
-        if (!userData) {
-          router.push('/login')
+        
+        if (!checkAuth()) {
           return
         }
 
