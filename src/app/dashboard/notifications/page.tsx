@@ -4,7 +4,6 @@ import { BellIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 interface Notification {
   id: string
