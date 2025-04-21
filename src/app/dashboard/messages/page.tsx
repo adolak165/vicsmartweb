@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import { UserCircleIcon, PaperClipIcon, XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
+import { PaperClipIcon, XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 
 interface Message {
