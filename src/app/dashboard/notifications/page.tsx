@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { BellIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
+import { useRouter } from 'next/navigation'
 
 interface Notification {
   id: string
@@ -14,14 +15,17 @@ interface Notification {
 }
 
 export default function NotificationsPage() {
+  const router = useRouter()
   const { user } = useAuth()
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Fetch notifications
   useEffect(() => {
-    if (!user) return
+    if (!user) {
+      router.push('/login')
+      return
+    }
 
     const fetchNotifications = async () => {
       try {
@@ -58,7 +62,7 @@ export default function NotificationsPage() {
     }
 
     fetchNotifications()
-  }, [user])
+  }, [user, router])
 
   const handleNotificationClick = (notificationId: string) => {
     setNotifications(notifications.map(notif => 
