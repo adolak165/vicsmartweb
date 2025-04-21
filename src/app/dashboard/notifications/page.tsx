@@ -20,10 +20,46 @@ export default function NotificationsPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const userData = localStorage.getItem('user')
-    if (!userData) {
-      router.push('/login')
+    const fetchNotifications = async () => {
+      try {
+        setLoading(true)
+        const userData = localStorage.getItem('user')
+        if (!userData) {
+          router.push('/login')
+          return
+        }
+
+        // TODO: Replace with actual API call
+        const mockNotifications: Notification[] = [
+          {
+            id: '1',
+            type: 'order',
+            title: 'New Order',
+            message: 'Your video editing order has been received',
+            read: false,
+            createdAt: new Date().toISOString()
+          },
+          {
+            id: '2',
+            type: 'payment',
+            title: 'Payment Successful',
+            message: 'Your payment of $99 has been processed',
+            read: true,
+            createdAt: new Date().toISOString()
+          }
+        ]
+
+        setNotifications(mockNotifications)
+        setError(null)
+      } catch (err) {
+        setError('Failed to fetch notifications')
+        console.error('Error fetching notifications:', err)
+      } finally {
+        setLoading(false)
+      }
     }
+
+    fetchNotifications()
   }, [router])
 
   const handleNotificationClick = (notificationId: string) => {
