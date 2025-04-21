@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { BellIcon } from '@heroicons/react/24/outline'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface Notification {
   id: string
@@ -14,25 +14,14 @@ interface Notification {
 }
 
 export default function NotificationsPage() {
-  const router = useRouter()
+  const { user } = useAuth()
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  // Handle authentication
+  // Fetch notifications
   useEffect(() => {
-    const userData = localStorage.getItem('user')
-    if (!userData) {
-      router.push('/login')
-    } else {
-      setIsAuthenticated(true)
-    }
-  }, [router])
-
-  // Fetch notifications only when authenticated
-  useEffect(() => {
-    if (!isAuthenticated) return
+    if (!user) return
 
     const fetchNotifications = async () => {
       try {
@@ -69,7 +58,7 @@ export default function NotificationsPage() {
     }
 
     fetchNotifications()
-  }, [isAuthenticated])
+  }, [user])
 
   const handleNotificationClick = (notificationId: string) => {
     setNotifications(notifications.map(notif => 
