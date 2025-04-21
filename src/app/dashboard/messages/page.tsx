@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { PaperAirplaneIcon, UserCircleIcon, PaperClipIcon, XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 interface Message {
   id: number
@@ -199,7 +200,13 @@ export default function MessagesPage() {
             <div className="p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-purple-600 to-purple-800">
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center ring-2 ring-white/30">
-                  <UserCircleIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <Image
+                    src="/images/avatar-placeholder.png"
+                    alt="User avatar"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
                 </div>
                 <div>
                   <h3 className="text-base sm:text-lg font-medium text-white">
@@ -224,14 +231,22 @@ export default function MessagesPage() {
                 >
                   {message.sender !== 'You' && (
                     message.avatar ? (
-                      <img
+                      <Image
                         src={message.avatar}
                         alt={message.sender}
+                        width={32}
+                        height={32}
                         className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover ring-2 ring-white"
                       />
                     ) : (
                       <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-purple-100 flex items-center justify-center ring-2 ring-white">
-                        <UserCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                        <Image
+                          src="/images/avatar-placeholder.png"
+                          alt="User avatar"
+                          width={24}
+                          height={24}
+                          className="rounded-full"
+                        />
                       </div>
                     )
                   )}
@@ -245,9 +260,11 @@ export default function MessagesPage() {
                           <div key={index} className="relative group">
                             {attachment.type === 'image' && (
                               <div className="relative rounded-lg overflow-hidden">
-                                <img
+                                <Image
                                   src={attachment.url}
                                   alt={attachment.name}
+                                  width={200}
+                                  height={200}
                                   className="max-w-full h-auto rounded-lg"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-1.5 sm:p-2 text-white text-xs">
@@ -272,7 +289,13 @@ export default function MessagesPage() {
                             {attachment.type === 'file' && (
                               <div className="flex items-center p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors duration-200">
                                 <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                  <PaperClipIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                                  <Image
+                                    src="/images/attachment.png"
+                                    alt="Attachment"
+                                    width={20}
+                                    height={20}
+                                    className="text-purple-600"
+                                  />
                                 </div>
                                 <div className="ml-2 sm:ml-3 flex-1 min-w-0">
                                   <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">
@@ -327,9 +350,11 @@ export default function MessagesPage() {
                     <div key={index} className="relative group">
                       {attachments[index].type.startsWith('image/') && (
                         <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-lg overflow-hidden">
-                          <img
+                          <Image
                             src={url}
                             alt={`Preview ${index}`}
+                            width={96}
+                            height={96}
                             className="w-full h-full object-cover"
                           />
                           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
@@ -369,7 +394,13 @@ export default function MessagesPage() {
                       {!attachments[index].type.startsWith('image/') && !attachments[index].type.startsWith('video/') && (
                         <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-lg overflow-hidden bg-gray-50 border border-gray-200 group-hover:border-purple-300 transition-colors duration-200">
                           <div className="absolute inset-0 flex flex-col items-center justify-center p-1 sm:p-2">
-                            <PaperClipIcon className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600 mb-0.5 sm:mb-1" />
+                            <Image
+                              src="/images/attachment.png"
+                              alt="Attachment"
+                              width={24}
+                              height={24}
+                              className="text-purple-600 mb-0.5 sm:mb-1"
+                            />
                             <p className="text-[10px] sm:text-xs text-gray-700 text-center truncate w-full">
                               {attachments[index].name}
                             </p>
@@ -403,7 +434,13 @@ export default function MessagesPage() {
                   onClick={() => fileInputRef.current?.click()}
                   className="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 text-xs sm:text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
                 >
-                  <PaperClipIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                  <Image
+                    src="/images/attachment.png"
+                    alt="Attach"
+                    width={20}
+                    height={20}
+                    className="mr-1 sm:mr-2"
+                  />
                   <span className="hidden sm:inline">Attach</span>
                 </button>
                 <input
@@ -427,7 +464,13 @@ export default function MessagesPage() {
                       : 'bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500'
                   }`}
                 >
-                  <PaperAirplaneIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                  <Image
+                    src="/images/send.png"
+                    alt="Send"
+                    width={20}
+                    height={20}
+                    className="mr-1 sm:mr-2"
+                  />
                   <span className="hidden sm:inline">{isSending ? 'Sending...' : 'Send'}</span>
                 </button>
               </div>

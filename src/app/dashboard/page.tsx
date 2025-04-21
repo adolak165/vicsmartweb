@@ -1,12 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardPage() {
-  const router = useRouter()
   const { user } = useAuth()
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -44,7 +42,7 @@ export default function DashboardPage() {
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(timer)
-  }, [])
+  }, [slides.length])
 
   useEffect(() => {
     const targetStats = {
