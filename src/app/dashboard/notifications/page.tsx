@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { BellIcon } from '@heroicons/react/24/outline'
-import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
