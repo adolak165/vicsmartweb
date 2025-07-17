@@ -27,13 +27,12 @@ export default function AuthForm({ type }: AuthFormProps) {
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signInWithOAuth({
+      await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`
         }
       });
-      if (error) throw error;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       setErrors([errorMessage]);
