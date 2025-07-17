@@ -61,19 +61,9 @@ export default function AuthForm({ type }: AuthFormProps) {
     setLoading(true);
     try {
       if (type === 'login') {
-        const { error } = await signIn(formData.email, formData.password);
-        if (error) {
-          setErrors([error]);
-        } else {
-          router.push('/dashboard');
-        }
+        await signIn(formData.email, formData.password);
       } else {
-        const { error } = await signUp(formData.email, formData.password);
-        if (error) {
-          setErrors([error]);
-        } else {
-          setEmailSent(true);
-        }
+        await signUp(formData.email, formData.password, formData.email);
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
